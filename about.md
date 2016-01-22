@@ -1,15 +1,13 @@
 ---
 layout: page
-title: About
+title: about
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+# about
+this website is created on 2016 / 1 / 21. use the framework of [jekyll]["jekyll"], and the website is hosted on github. for more detail about the source code, just go to my [github]["github"].
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jglovier" %} /
-[jekyll-new](https://github.com/jglovier/jekyll-new)
+I create the website sharing some interesting things and record my ordinary life.
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+["jekyll"]: https://github.com/jekyll/jekyll
+["github"]: https://github.com/smileboywtu
