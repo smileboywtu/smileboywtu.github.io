@@ -7,27 +7,27 @@ categories: articles
 
 **I hate it, but I love it.**
 
-{% highlight python3 %}
+{% highlight python %}
 
 welcome to visit blog of smile boy.
 this is version 1.0.
 
-In [1]: what's your name?
+In [1]: "what's your name?"
 "smileboywtu"
 
-In [2]: what's your main respository?
+In [2]: "what's your main respository?"
 "http://github.com/smileboywtu"
 
-In [3]: what's your favorite program language?
+In [3]: "what's your favorite program language?"
 python
 
-In [4]: how can I contact you?
+In [4]: "how can I contact you?"
 smileboywtu@gmail.com
 
-In [5]: what's more about you?
+In [5]: "what's more about you?"
 just check about and project page.
 
-In [6]: oh, do you need a job?
+In [6]: "oh, do you need a job?"
 yeah, I'd like a good job.
 
 {% endhighlight %}
