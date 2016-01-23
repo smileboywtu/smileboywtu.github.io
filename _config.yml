@@ -11,3 +11,6 @@ github_username:  smileboywtu
 
 # Build settings
 markdown: kramdown
+
+# comments
+comments: True 
