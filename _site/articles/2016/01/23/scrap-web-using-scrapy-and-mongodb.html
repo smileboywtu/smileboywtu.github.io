@@ -60,7 +60,7 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">scrape web using scrapy and mongodb</h1>
-    <p class="post-meta"><time datetime="2016-01-23T10:16:00+08:00" itemprop="datePublished">Jan 23, 2016</time></p>
+    <p class="post-meta"><time datetime="2016-01-23T10:16:23+08:00" itemprop="datePublished">Jan 23, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
@@ -132,19 +132,14 @@ the xpath of this site is: “/html/body/div/div/article/header/h1”</em></p>
 <p><em>if you want to test if you get the correct xpath, you can use the browser
 js console to test:</em></p>
 
-<p><img src="http://smileboywtu.github.io/downloads/posts/scrape-stackoverflow/js-test-xpath.png" alt="test xpath" /></p>
-
 <p><strong>3.</strong> ready to create the spiders</p>
 
 <ul>
   <li>here we just want to scrape the website:<br />
 “http://stackoverflow.com/questions”</li>
-  <li>we just want to get title and url item as definition in items.py.</li>
-</ul>
-
-<p><img src="http://smileboywtu.github.io/downloads/posts/scrape-stackoverflow/scrapy-item.png" alt="scrapy item" /></p>
-
-<ul>
+  <li>
+    <p>we just want to get title and url item as definition in items.py.</p>
+  </li>
   <li>get the xpath of title:
 “//*[@id=’question-summary-34959124’]/div[2]/h3/a/text()”</li>
 </ul>
@@ -229,8 +224,6 @@ you just scrapy only a specific one.</p>
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c"># scrape the stackoverflow newest quesion and save it into the json file.</span>
 <span class="c"># if you do not use -o result.json. you won't get any output except log.</span>
 scrapy crawl question_newest -o result.json</code></pre></figure>
-
-<p><img src="http://smileboywtu.github.io/downloads/posts/scrape-stackoverflow/result.png" alt="result json" /></p>
 
 <p>Copyright (c) 2015 smileboywtu All Rights Reserved.</p>
 
