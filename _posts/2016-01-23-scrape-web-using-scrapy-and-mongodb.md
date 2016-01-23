@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "scrape web using scrapy and mongodb"
-date:   2016-01-23 10:16:23 +0800
+date:   2016-01-23 14:19:20 +0800
 categories: articles
 ---
 
