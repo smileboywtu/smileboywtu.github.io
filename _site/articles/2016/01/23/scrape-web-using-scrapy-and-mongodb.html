@@ -72,13 +72,13 @@
   <li>install mongodb</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="n">pip</span> <span class="n">install</span> <span class="n">pymongo</span></code></pre></figure>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">pymongo</span></code></pre></div>
 
 <ul>
   <li>install scrapy</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="n">pip</span> <span class="n">install</span> <span class="n">scrapy</span></code></pre></figure>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">scrapy</span></code></pre></div>
 
 <h1 id="description">description</h1>
 
@@ -88,7 +88,7 @@
 
 <p>if you use the virutal env, make sure you are inside the environment.</p>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell">    scrapy startproject stackoverflow
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">scrapy startproject stackoverflow
     <span class="nb">cd </span>stackoverflow
     tree .
     ├── scrapy.cfg
@@ -98,16 +98,16 @@
         ├── pipelines.py
         ├── settings.py
         └── spiders
-            └── __init__.py</code></pre></figure>
+            └── __init__.py</code></pre></div>
 
 <p><strong>1.</strong> edit the items</p>
 
 <p><em>here we just record the title and url field.</em></p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># items.py</span>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># items.py</span>
 <span class="k">class</span> <span class="nc">StackoverflowItem</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Item</span><span class="p">):</span>
     <span class="n">title</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span></code></pre></figure>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span></code></pre></div>
 
 <p><strong>2.</strong> create the spiders</p>
 
@@ -173,61 +173,61 @@ get error when use the scrapy to scrapy the test out.</li>
 <p>what you really want to do is to scrapy the whole list of the question, but now
 you just scrapy only a specific one.</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- question list --&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"questions"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"question-summary"</span><span class="nt">&gt;</span> ... <span class="nt">&lt;/div&gt;</span>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!-- question list --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;questions&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;question-summary&quot;</span><span class="nt">&gt;</span> ... <span class="nt">&lt;/div&gt;</span>
     .
     .
     .
 <span class="nt">&lt;/div&gt;</span>
 
 <span class="c">&lt;!-- div for each question --&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"summary"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;summary&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;h3&gt;</span>
-        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"example.com"</span><span class="nt">&gt;</span>title<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;example.com&quot;</span><span class="nt">&gt;</span>title<span class="nt">&lt;/a&gt;</span>
     <span class="nt">&lt;/h3&gt;</span>
-<span class="nt">&lt;/div&gt;</span></code></pre></figure>
+<span class="nt">&lt;/div&gt;</span></code></pre></div>
 
 <p><strong>4.</strong> write the spiders</p>
 
-<p>here comes the source code, do more test in scrapy shell.</p>
+<p>here comes the source code, do more test in scrapy bash.</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># create spider.py inside the spiders/question_newest.py</span>
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># create spider.py inside the spiders/question_newest.py</span>
 <span class="c"># or you can use the scrapy to create the spider for you:</span>
 <span class="c"># scrapy genspider -t basic question_newest http://stackoverflow.com/questions</span>
-<span class="s">"""
-    this spider crawl the title and url from the
-    stackoverflow newest questions list.
-"""</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    this spider crawl the title and url from the</span>
+<span class="sd">    stackoverflow newest questions list.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">scrapy</span>
 <span class="kn">from</span> <span class="nn">stackoverflow.items</span> <span class="kn">import</span> <span class="n">StackoverflowItem</span>
 
-<span class="n">stackoverflow_url</span> <span class="o">=</span> <span class="s">u"http://stackoverflow.com"</span>
-<span class="n">questions_xpath</span> <span class="o">=</span> <span class="s">"//div[@class='summary']/h3"</span>
+<span class="n">stackoverflow_url</span> <span class="o">=</span> <span class="s">u&quot;http://stackoverflow.com&quot;</span>
+<span class="n">questions_xpath</span> <span class="o">=</span> <span class="s">&quot;//div[@class=&#39;summary&#39;]/h3&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">NewestQuestionSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s">"newest_question"</span>
-    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s">"http://stackoverflow.com/questions"</span><span class="p">]</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;newest_question&quot;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;http://stackoverflow.com/questions&quot;</span><span class="p">]</span>
     <span class="n">start_urls</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s">'http://stackoverflow.com/questions'</span><span class="p">,</span>
+        <span class="s">&#39;http://stackoverflow.com/questions&#39;</span><span class="p">,</span>
     <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
         <span class="n">questions</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="n">questions_xpath</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">question</span> <span class="ow">in</span> <span class="n">questions</span><span class="p">:</span>
             <span class="n">item</span> <span class="o">=</span> <span class="n">StackoverflowItem</span><span class="p">()</span>
-            <span class="n">item</span><span class="p">[</span><span class="s">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">"a/text()"</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">item</span><span class="p">[</span><span class="s">'url'</span><span class="p">]</span> <span class="o">=</span> <span class="n">stackoverflow_url</span> <span class="o">+</span> \
-                <span class="n">question</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">"a/@href"</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">yield</span> <span class="n">item</span></code></pre></figure>
+            <span class="n">item</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">question</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">&quot;a/text()&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">item</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stackoverflow_url</span> <span class="o">+</span> \
+                <span class="n">question</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">&quot;a/@href&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">yield</span> <span class="n">item</span></code></pre></div>
 
 <h1 id="test">test</h1>
 
-<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c"># scrape the stackoverflow newest quesion and save it into the json file.</span>
-<span class="c"># if you do not use -o result.json. you won't get any output except log.</span>
-scrapy crawl question_newest -o result.json</code></pre></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># scrape the stackoverflow newest quesion and save it into the json file.</span>
+<span class="c"># if you do not use -o result.json. you won&#39;t get any output except log.</span>
+scrapy crawl question_newest -o result.json</code></pre></div>
 
 <p><img src="/downloads/posts/scrape_stackoverflow/result.png" alt="result json" /></p>
 

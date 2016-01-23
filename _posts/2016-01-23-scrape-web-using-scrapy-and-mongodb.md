@@ -29,7 +29,7 @@ use scrapy to scrapy some new questions from stackoverflow and save the data int
 
 if you use the virutal env, make sure you are inside the environment.
 
-{% highlight shell %}
+{% highlight bash %}
     scrapy startproject stackoverflow
     cd stackoverflow
     tree .
@@ -126,7 +126,7 @@ you just scrapy only a specific one.
 
 **4.** write the spiders
 
-here comes the source code, do more test in scrapy shell.
+here comes the source code, do more test in scrapy bash.
 
 {% highlight python %}
 # create spider.py inside the spiders/question_newest.py
@@ -164,7 +164,7 @@ class NewestQuestionSpider(scrapy.Spider):
 
 # test
 
-{% highlight shell %}
+{% highlight bash %}
 # scrape the stackoverflow newest quesion and save it into the json file.
 # if you do not use -o result.json. you won't get any output except log.
 scrapy crawl question_newest -o result.json
