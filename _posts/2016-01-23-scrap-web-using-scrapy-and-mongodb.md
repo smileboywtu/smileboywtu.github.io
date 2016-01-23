@@ -70,7 +70,7 @@ scrapy can find out the data we need.*
 3. right mouse key and select inspect elements.
 4. after you get the html tag, just right mouse key get the xpath.
 
-![scrapy item]({{ site.url }}/downloads/posts/scrape_stackoverflow/scrape_item.png)
+![scrapy item]({{ site.baseurl }}/downloads/posts/scrape_stackoverflow/scrapy_item.png)
 
 *if you select this article title, and follow the step, you will find
 the xpath of this site is: "/html/body/div/div/article/header/h1"*
@@ -78,7 +78,7 @@ the xpath of this site is: "/html/body/div/div/article/header/h1"*
 *if you want to test if you get the correct xpath, you can use the browser
 js console to test:*
 
-![js test]({{ site.url }}/downloads/posts/scrape_stackoverflow/js_test_xpath.png)
+![js test]({{ site.baseurl }}/downloads/posts/scrape_stackoverflow/js_test_xpath.png)
 
 **3.** ready to create the spiders
 
@@ -171,6 +171,6 @@ scrapy crawl question_newest -o result.json
 
 {% endhighlight %}
 
-![result json]({{ site.url }}/downloads/posts/scrape_stackoverflow/result.png)
+![result json]({{ site.baseurl }}/downloads/posts/scrape_stackoverflow/result.png)
 
 Copyright (c) 2015 smileboywtu All Rights Reserved.
