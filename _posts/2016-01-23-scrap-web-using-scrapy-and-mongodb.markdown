@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "scrape web using scrapy and mongodb"
-date:   2016-01-23 10:16:00 +0800
+date:   2016-01-23 10:16:23 +0800
 categories: articles
 ---
 
@@ -76,7 +76,7 @@ the xpath of this site is: "/html/body/div/div/article/header/h1"*
 *if you want to test if you get the correct xpath, you can use the browser
 js console to test:*
 
-![test xpath]({{ site.url }}/downloads/posts/scrape-stackoverflow/js-test-xpath.png)
+![test xpath]({{ site.url }}/downloads/posts/scrape_stackoverflow/js_test_xpath.png)
 
 **3.** ready to create the spiders
 
@@ -84,7 +84,7 @@ js console to test:*
 "http://stackoverflow.com/questions"
 * we just want to get title and url item as definition in items.py.
 
-![scrapy item]({{ site.url }}/downloads/posts/scrape-stackoverflow/scrapy-item.png)
+![scrapy item]({{ site.url }}/downloads/posts/scrape_stackoverflow/scrapy_item.png)
 
 * get the xpath of title:
 "//\*[@id='question-summary-34959124']/div[2]/h3/a/text()"
@@ -171,6 +171,6 @@ scrapy crawl question_newest -o result.json
 
 {% endhighlight %}
 
-![result json]({{ site.url }}/downloads/posts/scrape-stackoverflow/result.png)
+![result json]({{ site.url }}/downloads/posts/scrape_stackoverflow/result.png)
 
 Copyright (c) 2015 smileboywtu All Rights Reserved.
