@@ -74,6 +74,12 @@
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">pip</span> <span class="n">install</span> <span class="n">pymongo</span></code></pre></div>
 
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># because the mongodb is cs mode database</span>
+    <span class="c"># you need to install the server</span>
+    <span class="c"># on ubuntu just use apt command install mongodb</span>
+    <span class="c"># follow the link: https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/</span>
+    sudo apt-get install -y mongodb-org</code></pre></div>
+
 <ul>
   <li>install scrapy</li>
 </ul>
@@ -223,13 +229,94 @@ you just scrapy only a specific one.</p>
                 <span class="n">question</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s">&quot;a/@href&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">yield</span> <span class="n">item</span></code></pre></div>
 
-<h1 id="test">test</h1>
+<h1 id="test-scrapy">test scrapy</h1>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># scrape the stackoverflow newest quesion and save it into the json file.</span>
 <span class="c"># if you do not use -o result.json. you won&#39;t get any output except log.</span>
 scrapy crawl question_newest -o result.json</code></pre></div>
 
 <p><img src="/downloads/posts/scrape_stackoverflow/result.png" alt="result json" /></p>
+
+<h1 id="use-the-mongodb-save-the-result">use the mongodb save the result</h1>
+
+<p>in scrapy if you want to use the mongodb or other database to save the
+result( the item return ) to database, you can use the pipeline interface
+to deal with the item.</p>
+
+<p>you can find settings.py and pipelines.py inside your scrapy directory.
+just enable the pipeline setting inside the settings.py</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># set up the mongodb</span>
+<span class="n">MONGODB_URL</span> <span class="o">=</span> <span class="s">&quot;localhost:27017&quot;</span>
+<span class="n">MONGODB_DB</span> <span class="o">=</span> <span class="s">&quot;stackoverflow&quot;</span>
+
+<span class="c"># Configure item pipelines</span>
+<span class="n">ITEM_PIPELINES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;stackoverflow.pipelines.MongodbPipeline&#39;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+<span class="p">}</span></code></pre></div>
+
+<p>customer the pipeline class inside the pipelines.py file:</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">pipeline to save the question inside the mongodb server.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pymongo</span>
+
+
+<span class="k">class</span> <span class="nc">MongodbPipeline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="n">collection_name</span> <span class="o">=</span> <span class="s">&#39;newest_question&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mongo_uri</span><span class="p">,</span> <span class="n">mongo_db</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mongo_uri</span> <span class="o">=</span> <span class="n">mongo_uri</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mongo_db</span> <span class="o">=</span> <span class="n">mongo_db</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_crawler</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">crawler</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="p">(</span>
+            <span class="n">mongo_uri</span><span class="o">=</span><span class="n">crawler</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;MONGODB_URL&#39;</span><span class="p">),</span>
+            <span class="n">mongo_db</span><span class="o">=</span><span class="n">crawler</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;MONGODB_DB&#39;</span><span class="p">,</span> <span class="s">&#39;defautlt-test&#39;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">open_spider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">pymongo</span><span class="o">.</span><span class="n">MongoClient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mongo_uri</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mongo_db</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">close_spider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">process_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">collection_name</span><span class="p">]</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">item</span></code></pre></div>
+
+<h1 id="test-the-mongodb">test the mongodb</h1>
+
+<p>before you run the spider, you need to start the mongod service.</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># ubuntu 14.04</span>
+sudo service mongod start
+
+<span class="c"># run spider</span>
+scrapy crawl newest_question
+
+<span class="c"># after done, check your mongodb</span>
+mongo shell
+
+<span class="c"># show database</span>
+show db
+
+<span class="c"># switch to stackoverflow</span>
+use stackoverflow
+
+<span class="c"># find out data</span>
+db.newest_question.find<span class="o">()</span></code></pre></div>
+
+<h1 id="thanks-for-reading">thanks for reading</h1>
+
+<p>all done here, hope you’ll enjoy with it.</p>
 
 <p>Copyright (c) 2015 smileboywtu All Rights Reserved.</p>
 
