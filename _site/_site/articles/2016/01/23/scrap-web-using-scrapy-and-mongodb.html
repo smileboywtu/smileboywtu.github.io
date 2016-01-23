@@ -126,15 +126,11 @@ scrapy can find out the data we need.</em></p>
   <li>after you get the html tag, just right mouse key get the xpath.</li>
 </ol>
 
-<p><img src="http://smileboywtu.github.io/downloads/posts/scrape_stackoverflow/scrape_item.png" alt="scrapy item" /></p>
-
 <p><em>if you select this article title, and follow the step, you will find
 the xpath of this site is: “/html/body/div/div/article/header/h1”</em></p>
 
 <p><em>if you want to test if you get the correct xpath, you can use the browser
 js console to test:</em></p>
-
-<p><img src="http://smileboywtu.github.io/downloads/posts/scrape_stackoverflow/js_test_xpath.png" alt="js test" /></p>
 
 <p><strong>3.</strong> ready to create the spiders</p>
 
@@ -228,8 +224,6 @@ you just scrapy only a specific one.</p>
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="c"># scrape the stackoverflow newest quesion and save it into the json file.</span>
 <span class="c"># if you do not use -o result.json. you won't get any output except log.</span>
 scrapy crawl question_newest -o result.json</code></pre></figure>
-
-<p><img src="http://smileboywtu.github.io/downloads/posts/scrape_stackoverflow/result.png" alt="result json" /></p>
 
 <p>Copyright (c) 2015 smileboywtu All Rights Reserved.</p>
 
