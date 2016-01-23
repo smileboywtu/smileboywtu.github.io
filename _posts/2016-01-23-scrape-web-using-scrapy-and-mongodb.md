@@ -20,7 +20,7 @@ you'd better do this in a virtual env.
 # you need to install the server
 # on ubuntu just use apt command install mongodb
 # follow the link: https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
-    sudo apt-get install -y mongodb-org
+sudo apt-get install -y mongodb-org
 {% endhighlight %}
 
 * install scrapy
