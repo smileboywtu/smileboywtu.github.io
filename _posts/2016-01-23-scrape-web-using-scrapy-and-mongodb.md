@@ -16,10 +16,10 @@ you'd better do this in a virtual env.
 {% endhighlight %}
 
 {% highlight bash %}
-    # because the mongodb is cs mode database
-    # you need to install the server
-    # on ubuntu just use apt command install mongodb
-    # follow the link: https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+# because the mongodb is cs mode database
+# you need to install the server
+# on ubuntu just use apt command install mongodb
+# follow the link: https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
     sudo apt-get install -y mongodb-org
 {% endhighlight %}
 
