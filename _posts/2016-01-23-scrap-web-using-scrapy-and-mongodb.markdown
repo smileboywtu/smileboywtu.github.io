@@ -173,7 +173,4 @@ scrapy crawl question_newest -o result.json
 
 ![result json]({{ site.url }}/downloads/posts/scrape-stackoverflow/result.png)
 
-# thanks for reading
-another part is on the way.
-
 Copyright (c) 2015 smileboywtu All Rights Reserved.
