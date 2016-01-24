@@ -13,4 +13,4 @@ github_username:  smileboywtu
 markdown: kramdown
 
 # comments
-comments: false 
+comments: true 
