@@ -1,0 +1,15 @@
+
+.title:before {
+    content: ">>";
+}
+
+.talk:last-child {
+    margin-right: 0;
+}
+
+.talk {
+    display: block;
+    float: left;
+    margin-right: 10.1484%;
+    width: 63.28387%;
+}
