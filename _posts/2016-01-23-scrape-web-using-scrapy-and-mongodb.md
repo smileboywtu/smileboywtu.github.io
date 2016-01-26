@@ -136,7 +136,7 @@ you just scrapy only a specific one.
 
 here comes the source code, do more test in scrapy bash.
 
-{% highlight python %}
+{% highlight python linenos %}
 # create spider.py inside the spiders/question_newest.py
 # or you can use the scrapy to create the spider for you:
 # scrapy genspider -t basic question_newest http://stackoverflow.com/questions
@@ -205,7 +205,7 @@ ITEM_PIPELINES = {
 
 customer the pipeline class inside the pipelines.py file:
 
-{% highlight python %}
+{% highlight python linenos %}
 
 """
 
