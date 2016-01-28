@@ -107,8 +107,5 @@ isso run
 # other people like me to help you out.
 {% endhighlight %}
 
-# Thanks for reading.
-Copyright (c) 2015 Copyright smileboywtu All Rights Reserved.
-
 ["isso-github"]: https://github.com/posativ/isso
 ["official tutorial"]: https://posativ.org/isso/docs/

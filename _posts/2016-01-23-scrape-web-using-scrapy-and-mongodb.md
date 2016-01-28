@@ -270,8 +270,4 @@ db.newest_question.find()
 
 {% endhighlight %}
 
-# thanks for reading
-
 all done here, hope you'll enjoy with it.
-
-Copyright (c) 2015 smileboywtu All Rights Reserved.
