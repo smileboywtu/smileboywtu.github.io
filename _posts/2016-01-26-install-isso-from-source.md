@@ -90,6 +90,7 @@ make check
 # as I look details about the source code of isso, the isso just
 # reference the js directory to find out the js file, so do not
 # move or delect the source directory.
+sudo npm install -g requirejs uglify-js jade
 make js
 {% endhighlight %}
 

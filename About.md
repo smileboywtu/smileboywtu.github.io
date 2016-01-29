@@ -4,7 +4,6 @@ title: About
 permalink: /About/
 ---
 
-# about
 this website is created on 2016 / 1 / 21. use the framework of [jekyll]["jekyll"], and the website is hosted on github. for more detail about the source code, just go to my [github]["github"].
 
 the talking board is powered by [isso]["isso"]. if you can't see the comments you

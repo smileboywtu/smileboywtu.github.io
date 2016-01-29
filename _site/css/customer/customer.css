@@ -6,6 +6,7 @@ html {
     position: relative;
     min-height: 100%;
 }
+
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
@@ -13,9 +14,24 @@ body {
 }
 
 /**
-page-layout
+default
 */
 
+.default {
+    padding-left: 30px;
+}
+
+/**
+page-layout
+*/
+.page {
+    padding-left: 30px;
+    margin-bottom: 60px;
+}
+
+.page .page-header {
+    
+}
 
 /**
 posts
@@ -67,7 +83,6 @@ comments
 .post .comments {
     display: block;
     float: left;
-    margin-bottom: 60px;
     margin-right: 10.1484%;
     width: 63.28387%;
 }
