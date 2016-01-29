@@ -11,4 +11,4 @@ start time
 preview
 =======
 
-![website](https://github.com/smileboywtu/smileboywtu.github.io/tree/master/downloads/screenshut/screen.png)
+![website](https://github.com/smileboywtu/smileboywtu.github.io/blob/master/downloads/screenshut/screen.jpg)
