@@ -18,6 +18,12 @@ layout: default
         {{ content }}
     </div>
 
-    {% include comments.html %}
+    {% if site.comments %}
+    <hr>
+    <div class="post-comments">
+        <section class="" id="isso-thread"></section>
+    </div>
+
+    {% endif %}
 
 </div>

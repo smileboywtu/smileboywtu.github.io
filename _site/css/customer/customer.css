@@ -9,6 +9,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    clear: both;
 }
 
 /**
@@ -42,6 +43,7 @@ post
     margin: auto;
     width: 85%;
     padding: 10px;
+    margin-bottom: 60px;
 }
 
 .post .post-meta {
@@ -62,14 +64,16 @@ post
 comments
 */
 
-.comments:last-child {
-    margin-right: 0;
-}
-.comments {
+.post .comments {
     display: block;
     float: left;
+    margin-bottom: 60px;
     margin-right: 10.1484%;
     width: 63.28387%;
+}
+
+.post .comments:last-child {
+    margin-right: 0;
 }
 
 /**

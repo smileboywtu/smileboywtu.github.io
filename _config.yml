@@ -1,10 +1,5 @@
 # Site settings
 title: Coder Life
-email: smileboywtu@gmail.com
-description: >
-    welcome to the site of smile boy, I'm a student under graduate.
-    I like python and java program language. One world life:
-    "I hate it, but I love it."
 baseurl: ""
 url: "http://smileboywtu.github.io"
 github_username:  smileboywtu
@@ -13,4 +8,4 @@ github_username:  smileboywtu
 markdown: kramdown
 
 # comments
-comments: true 
+comments: true
