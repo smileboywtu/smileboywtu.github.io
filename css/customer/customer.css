@@ -65,7 +65,7 @@ post
 .post {
     /** center */
     margin: auto;
-    width: 85%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 60px;
 }
@@ -116,8 +116,8 @@ customer footer
     margin-top: 20px;
 }
 .footer .icon {
-    margin-top: 20px;
     height: 24px;
     width: 24px;
+    margin-top: 20px;
     display: inline-block;
 }
