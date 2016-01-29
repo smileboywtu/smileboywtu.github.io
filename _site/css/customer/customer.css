@@ -41,6 +41,10 @@ page-layout
     font-size: 16px;
 }
 
+.page h3 {
+    font-family: monospace;
+}
+
 /**
 posts
 */
