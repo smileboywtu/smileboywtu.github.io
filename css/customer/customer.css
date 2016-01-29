@@ -8,10 +8,12 @@ html {
 }
 
 body {
+    background-color: #fff;
     /* Margin bottom by footer height */
     margin-bottom: 60px;
     clear: both;
 }
+
 
 /**
 default
@@ -30,7 +32,12 @@ page-layout
 }
 
 .page .page-header {
-    
+
+}
+
+.page p {
+    font-family: sans-serif;
+    font-size: 16px;
 }
 
 /**
@@ -40,6 +47,7 @@ posts
 ul.posts {
     list-style-type: none;
     margin-bottom: 2em;
+    font-size: 16px;
 }
 ul.posts li {
     line-height: 1.75em;
@@ -74,6 +82,7 @@ post
 
 .post .post-content {
     font-family: sans-serif;
+    font-size: 15px;
 }
 
 /**
