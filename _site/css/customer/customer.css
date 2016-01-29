@@ -1,0 +1,79 @@
+/**
+global
+*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+
+/**
+articles
+*/
+
+.articles {
+    margin-left: 30px;
+}
+
+/**
+posts
+*/
+
+ul.posts {
+    list-style-type: none;
+    margin-bottom: 2em;
+}
+ul.posts li {
+    line-height: 1.75em;
+}
+ul.posts span {
+    color: orange;
+    font-family: monospace;
+    font-size: 80%;
+}
+
+
+/**
+comments
+*/
+
+.comments:last-child {
+    margin-right: 0;
+}
+.comments {
+    display: block;
+    float: left;
+    margin-right: 10.1484%;
+    width: 63.28387%;
+}
+
+/**
+customer footer
+*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footer .container .text-muted {
+    margin-top: 20px;
+}
+
+.footer .icon {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 50%;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
