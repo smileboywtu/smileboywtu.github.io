@@ -6,15 +6,23 @@
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
-    <link rel="stylesheet" href="{{ "/css/customer/syntax.scss" | prepend: site.baseurl }}">
-    <link rel="stylesheet" href="{{ "/css/customer/customer.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ " /css/customer/syntax.scss " | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ " /css/customer/customer.css " | prepend: site.baseurl }}">
     <!-- bootstrap3 -->
-    <link rel="stylesheet" href="{{ "/css/bootstrap3/css/bootstrap.min.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ " /css/bootstrap3/css/bootstrap.min.css " | prepend: site.baseurl }}">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
     <script data-isso="//121.42.178.129" data-isso-lang="en" src="//121.42.178.129/js/embed.min.js"></script>
     <!-- bootstrap 3 -->
-    <script src="{{ "/css/bootstrap3/js/jquery-1.12.0.min.js" | prepend: site.baseurl }}"></script>
-    <script src="{{ "/css/bootstrap3/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ " /css/bootstrap3/js/jquery-1.12.0.min.js " | prepend: site.baseurl }}"></script>
+    <script src="{{ " /css/bootstrap3/js/bootstrap.min.js " | prepend: site.baseurl }}"></script>
+
+    {% if page.title %}
+    <script>
+        $(document).ready(function() {
+            $("#id-page-{{ page.title }}-title").addClass("active");
+        });
+    </script>
+    {% endif %}
 
 </head>
