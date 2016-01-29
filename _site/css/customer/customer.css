@@ -3,23 +3,18 @@ global
 */
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
-
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
-
 
 /**
-articles
+page-layout
 */
 
-.articles {
-    margin-left: 30px;
-}
 
 /**
 posts
@@ -38,6 +33,30 @@ ul.posts span {
     font-size: 80%;
 }
 
+/**
+post
+*/
+
+.post {
+    /** center */
+    margin: auto;
+    width: 85%;
+    padding: 10px;
+}
+
+.post .post-meta {
+    color: #aaa;
+    font-family: sans-serif;
+}
+
+.post .post-title {
+    font-family: monospace;
+    color:  #336699;
+}
+
+.post .post-content {
+    font-family: sans-serif;
+}
 
 /**
 comments
@@ -56,19 +75,18 @@ comments
 /**
 customer footer
 */
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
-}
 
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}
 .footer .container .text-muted {
     margin-top: 20px;
 }
-
 .footer .icon {
     position: absolute;
     height: 24px;

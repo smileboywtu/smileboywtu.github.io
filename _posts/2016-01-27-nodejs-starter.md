@@ -5,7 +5,9 @@ date:   2016-01-27 17:29:00 +0800
 categories: articles
 ---
 
-> source article comes from: http://openmymind.net/2012/2/3/Node-Require-and-Exports/
+> **source article comes from**:
+>
+> http://openmymind.net/2012/2/3/Node-Require-and-Exports/
 
 Back when I first started playing with node.js, there was one thing that always made me uncomfortable. Embarrassingly, I'm talking about module.exports. I say embarrassingly because it's such a fundamental part of node.js and it's quite simple. In fact, looking back, I have no idea what my hang up was...I just remember being fuzzy on it. Assuming I'm not the only one who's had to take a second, and third, look at it before it finally started sinking in, I thought I could do a little write up.
 

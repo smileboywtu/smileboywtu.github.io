@@ -9,7 +9,7 @@
     <title>scrape web using scrapy and mongodb</title>
     <meta name="description" content="prepare">
 
-    <link rel="stylesheet" href=" /css/customer/syntax.scss ">
+    <link rel="stylesheet" href=" /css/customer/syntax.css ">
     <link rel="stylesheet" href=" /css/customer/customer.css ">
     <!-- bootstrap3 -->
     <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
@@ -32,7 +32,7 @@
 
 
 <body>
-    <div class="body-wrapper">
+    <div>
         <header>
 
     <nav class="navbar navbar-default">
@@ -67,17 +67,23 @@
 </header>
 
 
-        <div class="page-content">
-            <div class="wrapper">
-                <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">scrape web using scrapy and mongodb</h1>
-    <p class="post-meta"><time datetime="2016-01-23T14:19:20+08:00" itemprop="datePublished">Jan 23, 2016</time></p>
-  </header>
+    <h2 class="post-title">scrape web using scrapy and mongodb</h2>
 
-  <div class="post-content" itemprop="articleBody">
-    <h1 id="prepare">prepare</h1>
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-01-23T14:19:20+08:00" itemprop="datePublished">
+                Jan 23, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <h1 id="prepare">prepare</h1>
 
 <p>you’d better do this in a virtual env.</p>
 
@@ -395,9 +401,9 @@ db.newest_question.find<span class="o">()</span></code></pre></div>
 
 <p>all done here, hope you’ll enjoy with it.</p>
 
-  </div>
+    </div>
 
-  
+    
 
 <div class="comments">
     <section id="isso-thread"></section>
@@ -405,9 +411,10 @@ db.newest_question.find<span class="o">()</span></code></pre></div>
 
 
 
-  
-</article>
 
+</div>
+
+                </div>
             </div>
         </div>
 
