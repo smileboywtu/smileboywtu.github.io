@@ -116,10 +116,8 @@ customer footer
     margin-top: 20px;
 }
 .footer .icon {
-    position: absolute;
+    margin-top: 20px;
     height: 24px;
     width: 24px;
-    left: 50%;
     display: inline-block;
-    vertical-align: text-bottom;
 }
