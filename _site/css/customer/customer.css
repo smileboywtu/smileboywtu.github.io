@@ -20,8 +20,7 @@ default
 */
 
 .default {
-    width: 75%;
-    padding-left: 15%;
+    padding-left: 30px;
     margin-bottom: 60px;
 }
 
