@@ -118,6 +118,7 @@ customer footer
     background-color: #f5f5f5;
 }
 .footer .container .text-muted {
+    display: inline-block;
     margin-top: 20px;
 }
 .footer .container .icon {
@@ -125,4 +126,5 @@ customer footer
     width: 24px;
     height: 24px;
     margin-top: 20px;
+    vertical-align: text-bottom;
 }
