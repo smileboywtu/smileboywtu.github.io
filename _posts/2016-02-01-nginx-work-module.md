@@ -14,11 +14,11 @@ nginx uses multiplexing and event notifications heavily, and dedicates specific 
 <img class="img-responsive" src="{{ site.baseurl }}/downloads/posts/nginx/nginx-structure.png"     alt="nginx structure">
 
 - Master: Monitor workers, respawn when a worker dies.Handle signals and notify workers
-- Worker:Process client requests.Handle connections Get cmd from master.Worker
+- Worker: Process client requests.Handle connections Get cmd from master.Worker
 processes accept new requests from a shared "listen" socket and execute a highly
-efficient run-looinside each worker to process thousands of connections per worker.
-There's no specialized arbitration odistribution of connections to the workers in
-nginx; this work is done by the OS kernel mechanisms. Upostartup, an initial set
+efficient run-loop inside each worker to process thousands of connections per worker.
+There's no specialized arbitration or distribution of connections to the workers in
+nginx; this work is done by the OS kernel mechanisms. Upon startup, an initial set
 of listening sockets is created. workers then continuously accept, read from and
 write to the sockets while processing HTTP requests and responses.
 
