@@ -88,17 +88,14 @@
         <blockquote>
   <p><strong>source article comes from</strong>:</p>
 
-  <p>http://openmymind.net/2012/2/3/Node-Require-and-Exports/</p>
+  <p><a href="http://openmymind.net/2012/2/3/Node-Require-and-Exports/">http://openmymind.net/2012/2/3/Node-Require-and-Exports/</a></p>
 </blockquote>
 
 <p>Back when I first started playing with node.js, there was one thing that always made me uncomfortable. Embarrassingly, I’m talking about module.exports. I say embarrassingly because it’s such a fundamental part of node.js and it’s quite simple. In fact, looking back, I have no idea what my hang up was…I just remember being fuzzy on it. Assuming I’m not the only one who’s had to take a second, and third, look at it before it finally started sinking in, I thought I could do a little write up.</p>
 
 <p>In Node, things are only visible to other things in the same file. By things, I mean variables, functions, classes and class members. So, given a file misc.js with the following contents:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">addX</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span>
-<span class="p">};</span></code></pre></div>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="kd">var</span> <span class="nx">addX</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>   <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span> <span class="p">};</span></code></pre></div>
 
 <p>Another file cannot access the x variable or addX function. This has nothing to do with the use of the var keyword. Rather, the fundamental Node building block is called a module which maps directly to a file. So we could say that the above file corresponds to a module named file1 and everything within that module (or any module) is private.</p>
 
@@ -108,57 +105,36 @@
 
 <p>Of course, as long as our module doesn’t expose anything, the above isn’t very useful. To expose things we use module.exports and export everything we want:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">addX</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span>
-<span class="p">};</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span> <span class="kd">var</span> <span class="nx">addX</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>   <span class="k">return</span> <span class="nx">value</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span> <span class="p">};</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">addX</span> <span class="o">=</span> <span class="nx">addX</span><span class="p">;</span></code></pre></div>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">addX</span> <span class="o">=</span> <span class="nx">addX</span><span class="p">;</span></code></pre></div>
 
 <p>Now we can use our loaded module:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">misc</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./misc&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Adding %d to 10 gives us %d&quot;</span><span class="p">,</span> <span class="nx">misc</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">misc</span><span class="p">.</span><span class="nx">addX</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span></code></pre></div>
-
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">misc</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./misc&#39;</span><span class="p">);</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Adding %d to 10 gives us %d&quot;</span><span class="p">,</span> <span class="nx">misc</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">misc</span><span class="p">.</span><span class="nx">addX</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span></code></pre></div>
 <p>There’s another way to expose things in a module:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">User</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">email</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
-  <span class="k">this</span><span class="p">.</span><span class="nx">email</span> <span class="o">=</span> <span class="nx">email</span><span class="p">;</span>
-<span class="p">};</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">User</span><span class="p">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">User</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">email</span><span class="p">)</span> <span class="p">{</span>   <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>   <span class="k">this</span><span class="p">.</span><span class="nx">email</span> <span class="o">=</span> <span class="nx">email</span><span class="p">;</span> <span class="p">};</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">User</span><span class="p">;</span></code></pre></div>
 
 <p>The difference is subtle but important. See it? We are exporting user directly, without any indirection. The difference between:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">User</span> <span class="o">=</span> <span class="nx">User</span><span class="p">;</span>
-<span class="c1">//vs</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">User</span><span class="p">;</span>
-<span class="nx">is</span> <span class="nx">all</span> <span class="nx">about</span> <span class="nx">how</span> <span class="nx">it</span><span class="s1">&#39;s used:</span>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">User</span> <span class="o">=</span> <span class="nx">User</span><span class="p">;</span> <span class="c1">//vs module.exports = User; is all about how it&#39;s used:</span>
 
-<span class="s1">var user = require(&#39;</span><span class="p">.</span><span class="o">/</span><span class="nx">user</span><span class="err">&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./user&#39;</span><span class="p">);</span>
 
-<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">user</span><span class="p">.</span><span class="nx">User</span><span class="p">();</span>
-<span class="c1">//vs</span>
-<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">user</span><span class="p">();</span></code></pre></div>
-
+<span class="kd">var</span> <span class="nx">u</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">user</span><span class="p">.</span><span class="nx">User</span><span class="p">();</span> <span class="c1">//vs var u = new user();</span></code></pre></div>
 <p>It’s pretty much a matter of whether your module is a container of exported values or not. You can actually mix the two within the same module, but I think that leads to a pretty ugly API.</p>
 
 <p>Finally, the last thing to consider is what happens when you directly export a function:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">powerLevel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">level</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">level</span> <span class="o">&gt;</span> <span class="mi">9000</span> <span class="o">?</span> <span class="s2">&quot;it&#39;s over 9000!!!&quot;</span> <span class="o">:</span> <span class="nx">level</span><span class="p">;</span>
-<span class="p">};</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">powerLevel</span><span class="p">;</span></code></pre></div>
-
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">powerLevel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">level</span><span class="p">)</span> <span class="p">{</span>   <span class="k">return</span> <span class="nx">level</span> <span class="o">&gt;</span> <span class="mi">9000</span> <span class="o">?</span> <span class="s2">&quot;it&#39;s over 9000!!!&quot;</span> <span class="o">:</span> <span class="nx">level</span><span class="p">;</span> <span class="p">};</span> <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">powerLevel</span><span class="p">;</span></code></pre></div>
 <p>When you require the above file, the returned value is the actual function. This means that you can do:</p>
 
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./powerlevel&#39;</span><span class="p">)(</span><span class="mi">9050</span><span class="p">);</span></code></pre></div>
 
 <p>Which is really just a condensed version of:</p>
 
-<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">powerLevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./powerlevel&#39;</span><span class="p">)</span>
-<span class="nx">powerLevel</span><span class="p">(</span><span class="mi">9050</span><span class="p">);</span></code></pre></div>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">powerLevel</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./powerlevel&#39;</span><span class="p">)</span> <span class="nx">powerLevel</span><span class="p">(</span><span class="mi">9050</span><span class="p">);</span></code></pre></div>
 
 <p>Hope that helps!</p>
 

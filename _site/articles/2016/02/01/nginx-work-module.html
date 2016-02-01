@@ -6,20 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Coder Life</title>
-    <meta name="description" content="">
+    <title>nginx work module</title>
+    <meta name="description" content="  the article is from:  https://www.quora.com/How-can-nginx-handle-concurrent-requests-with-a-single-worker-process">
 
     <link rel="stylesheet" href=" /css/customer/syntax.css ">
     <link rel="stylesheet" href=" /css/customer/customer.css ">
     <!-- bootstrap3 -->
     <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
-    <link rel="canonical" href="http://smileboywtu.github.io/">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/02/01/nginx-work-module.html">
 
     <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
     <!-- bootstrap 3 -->
     <script src=" /css/bootstrap3/js/jquery-1.12.0.min.js "></script>
     <script src=" /css/bootstrap3/js/bootstrap.min.js "></script>
 
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-nginx work module-title").addClass("active");
+        });
+    </script>
     
 
 </head>
@@ -66,25 +72,53 @@
         <div class="container-fluid">
             <div class="row default">
                 <div class="col-lg-6">
-                    <div>
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <div class="page-header">
-        <h1><small>Article</small></h1>
+    <h2 class="post-title">nginx work module</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-02-01T10:35:00+08:00" itemprop="datePublished">
+                Feb 1, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <blockquote>
+  <p><strong>the article is from</strong>:</p>
+
+  <p><a href="https://www.quora.com/How-can-nginx-handle-concurrent-requests-with-a-single-worker-process">https://www.quora.com/How-can-nginx-handle-concurrent-requests-with-a-single-worker-process</a></p>
+</blockquote>
+
+<p>nginx uses multiplexing and event notifications heavily, and dedicates specific tasks to separate processes. Connections are processed in a highly efficient run-loop in a limited number of single-threaded processes called workers. Within each worker nginx can handle many thousands of concurrent connections and requests per second.</p>
+
+<p><img class="img-responsive" src="/downloads/posts/nginx/nginx-structure.png" alt="nginx structure" />
+- Master: Monitor workers, respawn when a worker dies.Handle signals and notify
+-       workers
+- Worker:Process client requests.Handle connections Get cmd from master.Worker
+- processes accept new requests from a shared “listen” socket and execute a highly
+- efficient run-looinside each worker to process thousands of connections per worker.
+- There’s no specialized arbitration odistribution of connections to the workers in
+- nginx; this work is done by the OS kernel mechanisms. Upostartup, an initial set
+- of listening sockets is created. workers then continuously accept, read from and
+- write to the sockets while processing HTTP requests and responses.</p>
+
+<p><img class="img-responsive" src="/downloads/posts/nginx/nginx-workflow.png" alt="nginx workflow" /></p>
+
+<p>The run-loop is the most complicated part of the nginx worker code. It includes comprehensive inner calls and relies heavily on the idea of asynchronous task handling. Asynchronous operations are implemented through modularity, event notifications, extensive use of callback functions and fine-tuned timers. Overall, the key principle is to be as non-blocking as possible. The only situation where nginx can still block is when there’s not enough disk storage performance for a worker process.</p>
+
+<p>Because nginx does not fork a process or thread per connection, memory usage is very conservative and extremely efficient in the vast majority of cases. nginx conserves CPU cycles as well because there’s no ongoing create-destroy pattern for processes or threads. What nginx does is check the state of the network and storage, initialize new connections, add them to the run-loop, and process asynchronously until completion, at which point the connection is deallocated and removed from the run-loop. Combined with the careful use of syscalls and an accurate implementation of supporting interfaces like pool and slab memory allocators, nginx typically achieves moderate-to-low CPU usage even under extreme workloads.</p>
+
     </div>
 
-    <ul class="posts">
-        
-        <li><span>01 Feb 2016</span> &raquo; <a href="/articles/2016/02/01/nginx-work-module.html">nginx work module</a></li>
-        
-        <li><span>27 Jan 2016</span> &raquo; <a href="/articles/2016/01/27/nodejs-starter.html">Node.js, Require and Exports</a></li>
-        
-        <li><span>26 Jan 2016</span> &raquo; <a href="/articles/2016/01/26/install-isso-from-source.html">install isso from source</a></li>
-        
-        <li><span>23 Jan 2016</span> &raquo; <a href="/articles/2016/01/23/scrape-web-using-scrapy-and-mongodb.html">scrape web using scrapy and mongodb</a></li>
-        
-        <li><span>22 Jan 2016</span> &raquo; <a href="/articles/2016/01/22/welcome.html">Welcome</a></li>
-        
-    </ul>
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
 
 </div>
 
