@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>sphinx work with rst2pdf</title>
+    <meta name="description" content="there are many online good book that is open source using sphinx to generatehtml, the book source file is saved on github. when you want to read the bookoffl...">
+
+    <link rel="stylesheet" href=" /css/customer/syntax.css ">
+    <link rel="stylesheet" href=" /css/customer/customer.css ">
+    <!-- bootstrap3 -->
+    <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/02/05/sphinx-work-with-rst2pdf.html">
+
+    <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
+    <!-- bootstrap 3 -->
+    <script src=" /css/bootstrap3/js/jquery-1.12.0.min.js "></script>
+    <script src=" /css/bootstrap3/js/bootstrap.min.js "></script>
+
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-sphinx work with rst2pdf-title").addClass("active");
+        });
+    </script>
+    
+
+</head>
+
+
+<body>
+    <div>
+        <header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Coder Life</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="id-page-Projects-title">
+                        <a href=" /Projects/ ">Projects</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="id-page-About-title"><a href=" /About/ ">About</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://github.com/smileboywtu">GitHub</a></li>
+                            <li><a href="http://smileboywtu.deercv.com">Deer CV</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+        <div class="container-fluid">
+            <div class="row default">
+                <div class="col-lg-6">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <h2 class="post-title">sphinx work with rst2pdf</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-02-05T17:09:00+08:00" itemprop="datePublished">
+                Feb 5, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <p>there are many online good book that is open source using sphinx to generate
+html, the book source file is saved on github. when you want to read the book
+offline it’s a good idea to make the rst file to be pdf document.</p>
+
+<p>here I find many good books on a github <a href="https://github.com/vhf/free-programming-books">respository</a>. many of them are open
+source and give the source rst file.</p>
+
+<p>so today I’d like to tell you how to convert them to pdf.</p>
+
+<p>first you’d have the pre-require tools installed:</p>
+
+<ul>
+  <li>python2.7</li>
+  <li>sphinx</li>
+  <li>rst2pdf</li>
+</ul>
+
+<p>here after install the python2.7, just install the other two use pip:</p>
+
+<ul>
+  <li>pip install sphinx</li>
+  <li>pip install rst2pdf</li>
+</ul>
+
+<p>Let’s start to create the pdf:</p>
+
+<p><strong>1.</strong> download or clone the book source respository</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git clone <span class="s1">&#39;http://github.com/example/&#39;</span></code></pre></div>
+
+<p><strong>2.</strong> then find the conf.py inside the source directory.
+add the <em>rst2pdf.pdfbuilder</em> to extensions:</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span><span class="s">&#39;rst2pdf.pdfbuilder&#39;</span><span class="p">]</span></code></pre></div>
+
+<p>there are list to config the pdf, you can add to the conf.py:</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># -- Options for PDF output --------------------------------------------------</span>
+
+<span class="c"># Grouping the document tree into PDF files. List of tuples</span>
+<span class="c"># (source start file, target name, title, author, options).</span>
+<span class="c">#</span>
+<span class="c"># If there is more than one author, separate them with \\.</span>
+<span class="c"># For example: r&#39;Guido van Rossum\\Fred L. Drake, Jr., editor&#39;</span>
+<span class="c">#</span>
+<span class="c"># The options element is a dictionary that lets you override</span>
+<span class="c"># this config per-document.</span>
+<span class="c"># For example,</span>
+<span class="c"># (&#39;index&#39;, u&#39;MyProject&#39;, u&#39;My Project&#39;, u&#39;Author Name&#39;,</span>
+<span class="c">#  dict(pdf_compressed = True))</span>
+<span class="c"># would mean that specific document would be compressed</span>
+<span class="c"># regardless of the global pdf_compressed setting.</span>
+
+<span class="n">pdf_documents</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">&#39;index&#39;</span><span class="p">,</span> <span class="s">u&#39;MyProject&#39;</span><span class="p">,</span> <span class="s">u&#39;My Project&#39;</span><span class="p">,</span> <span class="s">u&#39;Author Name&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c"># A comma-separated list of custom stylesheets. Example:</span>
+<span class="n">pdf_stylesheets</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;sphinx&#39;</span><span class="p">,</span><span class="s">&#39;kerning&#39;</span><span class="p">,</span><span class="s">&#39;a4&#39;</span><span class="p">]</span>
+
+<span class="c"># A list of folders to search for stylesheets. Example:</span>
+<span class="n">pdf_style_path</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="s">&#39;_styles&#39;</span><span class="p">]</span>
+
+<span class="c"># Create a compressed PDF</span>
+<span class="c"># Use True/False or 1/0</span>
+<span class="c"># Example: compressed=True</span>
+<span class="c">#pdf_compressed = False</span>
+
+<span class="c"># A colon-separated list of folders to search for fonts. Example:</span>
+<span class="c"># pdf_font_path = [&#39;/usr/share/fonts&#39;, &#39;/usr/share/texmf-dist/fonts/&#39;]</span>
+
+<span class="c"># Language to be used for hyphenation support</span>
+<span class="c">#pdf_language = &quot;en_US&quot;</span>
+
+<span class="c"># Mode for literal blocks wider than the frame. Can be</span>
+<span class="c"># overflow, shrink or truncate</span>
+<span class="c">#pdf_fit_mode = &quot;shrink&quot;</span>
+
+<span class="c"># Section level that forces a break page.</span>
+<span class="c"># For example: 1 means top-level sections start in a new page</span>
+<span class="c"># 0 means disabled</span>
+<span class="c">#pdf_break_level = 0</span>
+
+<span class="c"># When a section starts in a new page, force it to be &#39;even&#39;, &#39;odd&#39;,</span>
+<span class="c"># or just use &#39;any&#39;</span>
+<span class="c">#pdf_breakside = &#39;any&#39;</span>
+
+<span class="c"># Insert footnotes where they are defined instead of</span>
+<span class="c"># at the end.</span>
+<span class="c">#pdf_inline_footnotes = True</span>
+
+<span class="c"># verbosity level. 0 1 or 2</span>
+<span class="c">#pdf_verbosity = 0</span>
+
+<span class="c"># If false, no index is generated.</span>
+<span class="c">#pdf_use_index = True</span>
+
+<span class="c"># If false, no modindex is generated.</span>
+<span class="c">#pdf_use_modindex = True</span>
+
+<span class="c"># If false, no coverpage is generated.</span>
+<span class="c">#pdf_use_coverpage = True</span>
+
+<span class="c"># Name of the cover page template to use</span>
+<span class="c">#pdf_cover_template = &#39;sphinxcover.tmpl&#39;</span>
+
+<span class="c"># Documents to append as an appendix to all manuals.</span>
+<span class="c">#pdf_appendices = []</span>
+
+<span class="c"># Enable experimental feature to split table cells. Use it</span>
+<span class="c"># if you get &quot;DelayedTable too big&quot; errors</span>
+<span class="c">#pdf_splittables = False</span>
+
+<span class="c"># Set the default DPI for images</span>
+<span class="c">#pdf_default_dpi = 72</span>
+
+<span class="c"># Enable rst2pdf extension modules (default is only vectorpdf)</span>
+<span class="c"># you need vectorpdf if you want to use sphinx&#39;s graphviz support</span>
+<span class="c">#pdf_extensions = [&#39;vectorpdf&#39;]</span>
+
+<span class="c"># Page template name for &quot;regular&quot; pages</span>
+<span class="c">#pdf_page_template = &#39;cutePage&#39;</span>
+
+<span class="c"># Show Table Of Contents at the beginning?</span>
+<span class="c">#pdf_use_toc = True</span>
+
+<span class="c"># How many levels deep should the table of contents be?</span>
+<span class="n">pdf_toc_depth</span> <span class="o">=</span> <span class="mi">9999</span>
+
+<span class="c"># Add section number to section references</span>
+<span class="n">pdf_use_numbered_links</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="c"># Background images fitting mode</span>
+<span class="n">pdf_fit_background_mode</span> <span class="o">=</span> <span class="s">&#39;scale&#39;</span></code></pre></div>
+
+<p><strong>3.</strong> build the pdf files</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sphinx-build -b pdf <span class="nb">source </span>_build/pdf</code></pre></div>
+
+<p>make sure you are in the right directory.</p>
+
+<p>that’s done, happy reading.</p>
+
+
+    </div>
+
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
+
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+    <div class="container-fluid">
+        <div class="container row">
+            <div class="col-xs-5">
+                <p class="text-muted text-left text-primary text-justify">
+                    <small>Designed By Smile Boy.</small>
+                </p>
+            </div>
+            <div class="col-xs-1">
+                <a href="https://github.com/smileboywtu">
+                    <span class="icon"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+
+</html>
