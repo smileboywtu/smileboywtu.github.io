@@ -110,7 +110,7 @@ customer footer
 */
 
 .footer {
-    display: block;
+    display: border-left-color: #000;k;
     position: absolute;
     bottom: 0;
     width: 100%;
