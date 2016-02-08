@@ -7,7 +7,7 @@ categories: articles
 
 happy new year everyone.
 
-{% highlight python3 %}
+{% highlight python %}
 #!/usr/bin/env python3
 print("""
     happy new year, I hope I can find a good girl and get a good family.
