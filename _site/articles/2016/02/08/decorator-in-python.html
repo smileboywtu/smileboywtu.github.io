@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>python decorator</title>
+    <meta name="description" content="we first start with python closure and then get an understanding withpython decorator.">
+
+    <link rel="stylesheet" href=" /css/customer/syntax.css ">
+    <link rel="stylesheet" href=" /css/customer/customer.css ">
+    <!-- bootstrap3 -->
+    <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/02/08/decorator-in-python.html">
+
+    <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
+    <!-- bootstrap 3 -->
+    <script src=" /css/bootstrap3/js/jquery-1.12.0.min.js "></script>
+    <script src=" /css/bootstrap3/js/bootstrap.min.js "></script>
+
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-python decorator-title").addClass("active");
+        });
+    </script>
+    
+
+</head>
+
+
+<body>
+    <div>
+        <header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Coder Life</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="id-page-Projects-title">
+                        <a href=" /Projects/ ">Projects</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="id-page-About-title"><a href=" /About/ ">About</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://github.com/smileboywtu">GitHub</a></li>
+                            <li><a href="http://smileboywtu.deercv.com">Deer CV</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+        <div class="container-fluid">
+            <div class="row default">
+                <div class="col-lg-6">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <h2 class="post-title">python decorator</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-02-08T17:32:00+08:00" itemprop="datePublished">
+                Feb 8, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <p>we first start with python closure and then get an understanding with
+python decorator.</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outer</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;value of x is:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">inner</span>
+
+<span class="n">func</span> <span class="o">=</span> <span class="n">outer</span><span class="p">()</span>
+
+<span class="n">func</span><span class="p">()</span></code></pre></div>
+
+<p>Everything works according to Python’s scoping rules - x is a local variable
+in our function outer. When inner prints x, Python looks for a local variable
+to inner and not finding it looks in the enclosing scope which is the function
+outer, finding it there.</p>
+
+<p>But what about things from the point of view of variable lifetime? Our variable
+x is local to the function outer which means it only exists while the function
+outer is running. We aren’t able to call inner till after the return of outer
+so according to our model of how Python works, x shouldn’t exist anymore by
+the time we call inner and perhaps a runtime error of some kind should occur.</p>
+
+<p>It turns out that, against our expectations, our returned inner function does
+work. <strong>Python supports a feature called function closures which means that
+inner functions defined in non-global scope remember what their enclosing
+namespaces looked like at definition time.</strong> This can be seen by looking at the
+<em>func.__closure__</em> attribute of our inner function which contains the
+variables in the enclosing scopes.</p>
+
+<p>Remember - the function inner is being newly defined each time the function
+outer is called. Right now the value of x doesn’t change so each inner function
+we get back does the same thing as another inner function - but what if we
+tweaked it a little bit?</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">inner</span>
+
+<span class="n">func1</span> <span class="o">=</span> <span class="n">outer</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">func1</span><span class="p">()</span>
+
+<span class="n">func2</span> <span class="o">=</span> <span class="n">outer</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">func2</span><span class="p">()</span></code></pre></div>
+
+<p>From this example you can see that closures - the fact that functions remember
+their enclosing scope - can be used to build custom functions that have,
+essentially, a hard coded argument. We aren’t passing the numbers 1 or 2 to our
+inner function but are building custom versions of our inner function that
+“remembers” what number it should print.</p>
+
+<p>This alone is a powerful technique - you might even think of it as similar to
+object oriented techniques in some ways: outer is a constructor for inner with
+x acting like a private member variable. And the uses are numerous - if you are
+familiar with the key parameter in Python’s sorted function you have probably
+written a lambda function to sort a list of lists by the second item instead of
+the first. You might now be able to write an itemgetter function that accepts
+the index to retrieve and returns a function that could suitably be passed to
+the key parameter.</p>
+
+<p>now get start with the python decorator:</p>
+
+<p><strong>A decorator is just a callable that takes a function as an argument and
+returns a replacement function. We’ll start simply and work our way up to
+useful decorators.</strong></p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">some_func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;before some func&#39;</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">some_func</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">result</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">inner</span>
+
+<span class="k">def</span> <span class="nf">func1</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">1</span>
+
+<span class="n">func2</span> <span class="o">=</span> <span class="n">outer</span><span class="p">(</span><span class="n">func1</span><span class="p">)</span>
+
+<span class="n">func2</span><span class="p">()</span></code></pre></div>
+
+<p>Look carefully through our decorator example. We defined a function named outer
+that has a single parameter some_func. Inside outer we define an nested function
+named inner. The inner function will print a string then call some_func, catching
+its return value.</p>
+
+<p>The value of some_func might be different each time outer is called, but whatever
+function it is we’ll call it. Finally inner returns the return value of
+some_func() + 1 - and we can see that when we call our returned function stored
+in decorated. we get the results of the print and also a return value of 2 instead
+of the original return value 1 we would expect to get by calling func1.</p>
+
+<p>we could say the func2 is a decorated version of func1. it’s func1 plus some thing.</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="k">def</span> <span class="nf">get_run_time</span><span class="p">(</span><span class="n">some_function</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">some_function</span><span class="p">()</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">return</span> <span class="s">&quot;the function has took : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@get_run_time</span>
+<span class="k">def</span> <span class="nf">run_test</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">run_test</span><span class="p">())</span></code></pre></div>
+
+<p>this may be helpful to test the run time of a function.</p>
+
+<p>the decorator can be more generic when work with the *args and **kwargs.</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">g</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span>
+
+
+<span class="k">def</span> <span class="nf">login_required</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+    <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">decorated_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">decorated_function</span>
+
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/secret&#39;</span><span class="p">)</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">secret</span><span class="p">():</span>
+    <span class="k">pass</span></code></pre></div>
+
+<p>this code comes from the flask source code. from here we also can know that the
+decorator work from most inner to outer.</p>
+
+<p>happy coding.</p>
+
+    </div>
+
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
+
+</div>
+
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+    <div class="container-fluid">
+        <div class="container row">
+            <div class="col-xs-5">
+                <p class="text-muted text-left text-primary text-justify">
+                    <small>Designed By Smile Boy.</small>
+                </p>
+            </div>
+            <div class="col-xs-1">
+                <a href="https://github.com/smileboywtu">
+                    <span class="icon"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+
+</html>
