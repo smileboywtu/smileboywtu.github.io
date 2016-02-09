@@ -135,7 +135,7 @@ app.run()
 {% endhighlight %}
 
 this code invoke the WSGI server inside the python standard lib. whatever the
-server is, the Flask.__call__ will be invoked finally. this function will
+server is, the Flask.\_\_call\_\_ will be invoked finally. this function will
 accomplish the dispatch task.
 
 conclusion
