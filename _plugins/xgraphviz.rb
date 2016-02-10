@@ -249,6 +249,7 @@ module Jekyll
             @style = %[style="#{@style}"]
           end
 
+          # use b3 class
           return "<img class='img-responsive' #{@style} src='#{output}'>"
         end
       end
