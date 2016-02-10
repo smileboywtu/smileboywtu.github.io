@@ -40,7 +40,7 @@ module Jekyll
       #safe true
       #priority :low
 
-      GRAPHVIZ_DIR = "images/graphviz"
+      GRAPHVIZ_DIR = "downloads/graphviz"
       DIV_CLASS_ATTR = "container"
       # The regular expression syntax checker. Start with the language specifier.
       # Follow that by zero or more space separated options that take one of two
