@@ -69,7 +69,20 @@ here is how WSGI deal with a http request:
 
 structure like this:
 
-http(nginx) ===> WSGI(uwsgi) ===> middleware ===> ... ===> application
+{% xdot svg %}
+
+digraph stucture {
+
+rankdir=LR;
+
+http -> WSGI;
+WSGI -> middleware;
+middleware -> middleware;
+middleware -> application;
+
+}
+
+{% endxdot %}
 
 {% highlight python %}
 
