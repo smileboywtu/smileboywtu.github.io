@@ -12,3 +12,11 @@ preview
 =======
 
 ![website](https://github.com/smileboywtu/smileboywtu.github.io/blob/master/downloads/screenshut/screen.png)
+
+feature
+=======
+
+- Jekyll
+- isso comment system
+- bootstrap3
+- graphviz
