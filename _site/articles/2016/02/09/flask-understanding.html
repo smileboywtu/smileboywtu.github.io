@@ -150,18 +150,14 @@ the request.</p>
 
 <p>structure like this:</p>
 
-<p>![Alt text](http://g.gravizo.com/g?</p>
-
-<p>digraph stucture {</p>
-
-<p>rankdir=LR;</p>
-
-<p>http -&gt; WSGI;
-WSGI -&gt; middleware;
-middleware -&gt; middleware;
-middleware -&gt; application;</p>
-
-<p>})</p>
+<p><img src="http://g.gravizo.com/g?
+    digraph stucture {
+        rankdir=LR;
+        http -&gt; WSGI;
+        WSGI -&gt; middleware;
+        middleware -&gt; middleware;
+        middleware -&gt; application;
+}" alt="Alt text" /></p>
 
 <figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span></code></pre></figure>
 

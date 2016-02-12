@@ -70,16 +70,12 @@ here is how WSGI deal with a http request:
 structure like this:
 
 ![Alt text](http://g.gravizo.com/g?
-
-digraph stucture {
-
-rankdir=LR;
-
-http -> WSGI;
-WSGI -> middleware;
-middleware -> middleware;
-middleware -> application;
-
+    digraph stucture {
+        rankdir=LR;
+        http -> WSGI;
+        WSGI -> middleware;
+        middleware -> middleware;
+        middleware -> application;
 })
 
 {% highlight python %}
