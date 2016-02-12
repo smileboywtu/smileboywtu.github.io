@@ -69,7 +69,7 @@ here is how WSGI deal with a http request:
 
 structure like this:
 
-{% xdot png %}
+![Alt text](http://g.gravizo.com/g?
 
 digraph stucture {
 
@@ -80,9 +80,7 @@ WSGI -> middleware;
 middleware -> middleware;
 middleware -> application;
 
-}
-
-{% endxdot %}
+})
 
 {% highlight python %}
 

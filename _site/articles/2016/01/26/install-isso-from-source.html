@@ -109,12 +109,12 @@
 
 <p><strong>1.</strong> install the sqlite3, python2.7, and virtual env.</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install sqlite3 python2.7 python2-pip
-sudo pip install virtualenv virtualenvwrapper</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install sqlite3 python2.7 python2-pip
+sudo pip install virtualenv virtualenvwrapper</code></pre></figure>
 
 <p><strong>2.</strong> install the isso from source</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># config the virtual env wrapper envirionment</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># config the virtual env wrapper envirionment</span>
 <span class="c"># add this to your .bashrc</span>
 
 <span class="nb">export </span><span class="nv">VIRTUALENVWRAPPER_PYTHON</span><span class="o">=</span>/usr/bin/python2
@@ -133,19 +133,19 @@ git clone https://github.com/smileboywtu/isso.git
 
 <span class="c"># install python isso module</span>
 <span class="nb">cd </span>isso
-python setup.py install</code></pre></div>
+python setup.py install</code></pre></figure>
 
 <p><strong>3.</strong> compile the js file</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># an easy easy way to install node and npm with apt</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># an easy easy way to install node and npm with apt</span>
 sudo apt-get install node npm
 
 <span class="c"># or you can follow the steps of the official nodejs website.</span>
-curl -sL https://deb.nodesource.com/setup_4.x <span class="p">|</span> sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 <span class="c"># or install npm manually</span>
-curl -L https://www.npmjs.com/install.sh <span class="p">|</span> sudo sh
+curl -L https://www.npmjs.com/install.sh | sudo sh
 
 <span class="c"># create a link on ubuntu</span>
 sudo ln -s /usr/bin/nodejs /usr/bin/node
@@ -164,25 +164,25 @@ make check
 
 <span class="c"># compile js code from source.</span>
 <span class="c"># this will compile the embed.min.js for your client side.</span>
-<span class="c"># if you can&#39;t see the embed.min.js inside the isso/isso/js after</span>
+<span class="c"># if you can't see the embed.min.js inside the isso/isso/js after</span>
 <span class="c"># this command, you may get error of compilation.</span>
 <span class="c"># as I look details about the source code of isso, the isso just</span>
 <span class="c"># reference the js directory to find out the js file, so do not</span>
 <span class="c"># move or delect the source directory.</span>
 sudo npm install -g requirejs uglify-js jade
-make js</code></pre></div>
+make js</code></pre></figure>
 
 <p><strong>4.</strong> run and test</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># inside the isso virtual env</span>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># inside the isso virtual env</span>
 <span class="c"># use workon isso to shift to the isso virtual env you created.</span>
 isso run
 
 <span class="c"># open the simple index.html inside the source directory.</span>
 <span class="c"># follow the official website for more usage details.</span>
-<span class="c"># if you can&#39;t comment or get some errors, just use the</span>
-<span class="c"># browser&#39;s develop tool to detect the error or contact</span>
-<span class="c"># other people like me to help you out.</span></code></pre></div>
+<span class="c"># if you can't comment or get some errors, just use the</span>
+<span class="c"># browser's develop tool to detect the error or contact</span>
+<span class="c"># other people like me to help you out.</span></code></pre></figure>
 
 
     </div>

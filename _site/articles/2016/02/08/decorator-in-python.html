@@ -89,15 +89,15 @@
         <p>we first start with python closure and then get an understanding with
 python decorator.</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outer</span><span class="p">():</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outer</span><span class="p">():</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&quot;value of x is:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"value of x is:"</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">inner</span>
 
 <span class="n">func</span> <span class="o">=</span> <span class="n">outer</span><span class="p">()</span>
 
-<span class="n">func</span><span class="p">()</span></code></pre></div>
+<span class="n">func</span><span class="p">()</span></code></pre></figure>
 
 <p>Everything works according to Python’s scoping rules - x is a local variable
 in our function outer. When inner prints x, Python looks for a local variable
@@ -122,7 +122,7 @@ outer is called. Right now the value of x doesn’t change so each inner functio
 we get back does the same thing as another inner function - but what if we
 tweaked it a little bit?</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
         <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">inner</span>
@@ -131,7 +131,7 @@ tweaked it a little bit?</p>
 <span class="n">func1</span><span class="p">()</span>
 
 <span class="n">func2</span> <span class="o">=</span> <span class="n">outer</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">func2</span><span class="p">()</span></code></pre></div>
+<span class="n">func2</span><span class="p">()</span></code></pre></figure>
 
 <p>From this example you can see that closures - the fact that functions remember
 their enclosing scope - can be used to build custom functions that have,
@@ -154,9 +154,9 @@ the key parameter.</p>
 returns a replacement function. We’ll start simply and work our way up to
 useful decorators.</strong></p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">some_func</span><span class="p">):</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">some_func</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;before some func&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'before some func'</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">some_func</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">result</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">inner</span>
@@ -166,7 +166,7 @@ useful decorators.</strong></p>
 
 <span class="n">func2</span> <span class="o">=</span> <span class="n">outer</span><span class="p">(</span><span class="n">func1</span><span class="p">)</span>
 
-<span class="n">func2</span><span class="p">()</span></code></pre></div>
+<span class="n">func2</span><span class="p">()</span></code></pre></figure>
 
 <p>Look carefully through our decorator example. We defined a function named outer
 that has a single parameter some_func. Inside outer we define an nested function
@@ -181,7 +181,7 @@ of the original return value 1 we would expect to get by calling func1.</p>
 
 <p>we could say the func2 is a decorated version of func1. it’s func1 plus some thing.</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">time</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">time</span>
 
 
 <span class="k">def</span> <span class="nf">get_run_time</span><span class="p">(</span><span class="n">some_function</span><span class="p">):</span>
@@ -190,7 +190,7 @@ of the original return value 1 we would expect to get by calling func1.</p>
         <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">some_function</span><span class="p">()</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-        <span class="k">return</span> <span class="s">&quot;the function has took : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+        <span class="k">return</span> <span class="s">"the function has took : "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">))</span> <span class="o">+</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span>
     <span class="k">return</span> <span class="n">wrapper</span>
 
 <span class="nd">@get_run_time</span>
@@ -198,13 +198,13 @@ of the original return value 1 we would expect to get by calling func1.</p>
     <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
         <span class="k">pass</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">run_test</span><span class="p">())</span></code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="n">run_test</span><span class="p">())</span></code></pre></figure>
 
 <p>this may be helpful to test the run time of a function.</p>
 
 <p>the decorator can be more generic when work with the *args and **kwargs.</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">g</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">url_for</span>
 
 
@@ -212,15 +212,15 @@ of the original return value 1 we would expect to get by calling func1.</p>
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">decorated_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">user</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">'login'</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">decorated_function</span>
 
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s">&#39;/secret&#39;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">'/secret'</span><span class="p">)</span>
 <span class="nd">@login_required</span>
 <span class="k">def</span> <span class="nf">secret</span><span class="p">():</span>
-    <span class="k">pass</span></code></pre></div>
+    <span class="k">pass</span></code></pre></figure>
 
 <p>this code comes from the flask source code. from here we also can know that the
 decorator work from most inner to outer.</p>

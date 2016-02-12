@@ -89,12 +89,12 @@
         <p>This is simply the observation that in Python, functions are objects like
 everything else. Ah, function containing variable, you’re not so special.</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">pass</span>
 
 <span class="k">print</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">__class__</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="nb">object</span><span class="p">))</span></code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="nb">object</span><span class="p">))</span></code></pre></figure>
 
 <p>You may never have thought of your functions as having attributes - but
 functions are objects in Python, just like everything else. (If you find
@@ -105,13 +105,13 @@ That means you can pass functions to functions as arguments or return functions
 from functions as return values! If you’ve never thought of this sort of thing
 consider the following perfectly legal Python:</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
 
 <span class="k">def</span> <span class="nf">do_operation</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">operation</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">do_operation</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span></code></pre></div>
+<span class="k">print</span><span class="p">(</span><span class="n">do_operation</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span></code></pre></figure>
 
 <p>function names are just variable labels like any other variable.</p>
 
@@ -120,14 +120,14 @@ arguments for frequently used operations like customizing the sorted builtin
 by providing a function to the key parameter. But what about returning functions
 as values? Consider:</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outter</span><span class="p">():</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">outter</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&quot;inner class&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"inner class"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">inner</span>
 
 <span class="n">func</span> <span class="o">=</span> <span class="n">outter</span><span class="p">()</span>
 
-<span class="n">func</span><span class="p">()</span></code></pre></div>
+<span class="n">func</span><span class="p">()</span></code></pre></figure>
 
 <p>func first just get the function name of the inner class, and then use this
 name to invoke the inner class. this just like the function pointer in c

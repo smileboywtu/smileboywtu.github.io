@@ -114,40 +114,40 @@ source and give the source rst file.</p>
 
 <p><strong>1.</strong> download or clone the book source respository</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">git clone <span class="s1">&#39;http://github.com/example/&#39;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">git clone <span class="s1">'http://github.com/example/'</span></code></pre></figure>
 
 <p><strong>2.</strong> then find the conf.py inside the source directory.
 add the <em>rst2pdf.pdfbuilder</em> to extensions:</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span><span class="s">&#39;rst2pdf.pdfbuilder&#39;</span><span class="p">]</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s">'sphinx.ext.autodoc'</span><span class="p">,</span><span class="s">'rst2pdf.pdfbuilder'</span><span class="p">]</span></code></pre></figure>
 
 <p>there are list to config the pdf, you can add to the conf.py:</p>
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># -- Options for PDF output --------------------------------------------------</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="c"># -- Options for PDF output --------------------------------------------------</span>
 
 <span class="c"># Grouping the document tree into PDF files. List of tuples</span>
 <span class="c"># (source start file, target name, title, author, options).</span>
 <span class="c">#</span>
 <span class="c"># If there is more than one author, separate them with \\.</span>
-<span class="c"># For example: r&#39;Guido van Rossum\\Fred L. Drake, Jr., editor&#39;</span>
+<span class="c"># For example: r'Guido van Rossum\\Fred L. Drake, Jr., editor'</span>
 <span class="c">#</span>
 <span class="c"># The options element is a dictionary that lets you override</span>
 <span class="c"># this config per-document.</span>
 <span class="c"># For example,</span>
-<span class="c"># (&#39;index&#39;, u&#39;MyProject&#39;, u&#39;My Project&#39;, u&#39;Author Name&#39;,</span>
+<span class="c"># ('index', u'MyProject', u'My Project', u'Author Name',</span>
 <span class="c">#  dict(pdf_compressed = True))</span>
 <span class="c"># would mean that specific document would be compressed</span>
 <span class="c"># regardless of the global pdf_compressed setting.</span>
 
 <span class="n">pdf_documents</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s">&#39;index&#39;</span><span class="p">,</span> <span class="s">u&#39;MyProject&#39;</span><span class="p">,</span> <span class="s">u&#39;My Project&#39;</span><span class="p">,</span> <span class="s">u&#39;Author Name&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">'index'</span><span class="p">,</span> <span class="s">u'MyProject'</span><span class="p">,</span> <span class="s">u'My Project'</span><span class="p">,</span> <span class="s">u'Author Name'</span><span class="p">),</span>
 <span class="p">]</span>
 
 <span class="c"># A comma-separated list of custom stylesheets. Example:</span>
-<span class="n">pdf_stylesheets</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;sphinx&#39;</span><span class="p">,</span><span class="s">&#39;kerning&#39;</span><span class="p">,</span><span class="s">&#39;a4&#39;</span><span class="p">]</span>
+<span class="n">pdf_stylesheets</span> <span class="o">=</span> <span class="p">[</span><span class="s">'sphinx'</span><span class="p">,</span><span class="s">'kerning'</span><span class="p">,</span><span class="s">'a4'</span><span class="p">]</span>
 
 <span class="c"># A list of folders to search for stylesheets. Example:</span>
-<span class="n">pdf_style_path</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;.&#39;</span><span class="p">,</span> <span class="s">&#39;_styles&#39;</span><span class="p">]</span>
+<span class="n">pdf_style_path</span> <span class="o">=</span> <span class="p">[</span><span class="s">'.'</span><span class="p">,</span> <span class="s">'_styles'</span><span class="p">]</span>
 
 <span class="c"># Create a compressed PDF</span>
 <span class="c"># Use True/False or 1/0</span>
@@ -155,23 +155,23 @@ add the <em>rst2pdf.pdfbuilder</em> to extensions:</p>
 <span class="c">#pdf_compressed = False</span>
 
 <span class="c"># A colon-separated list of folders to search for fonts. Example:</span>
-<span class="c"># pdf_font_path = [&#39;/usr/share/fonts&#39;, &#39;/usr/share/texmf-dist/fonts/&#39;]</span>
+<span class="c"># pdf_font_path = ['/usr/share/fonts', '/usr/share/texmf-dist/fonts/']</span>
 
 <span class="c"># Language to be used for hyphenation support</span>
-<span class="c">#pdf_language = &quot;en_US&quot;</span>
+<span class="c">#pdf_language = "en_US"</span>
 
 <span class="c"># Mode for literal blocks wider than the frame. Can be</span>
 <span class="c"># overflow, shrink or truncate</span>
-<span class="c">#pdf_fit_mode = &quot;shrink&quot;</span>
+<span class="c">#pdf_fit_mode = "shrink"</span>
 
 <span class="c"># Section level that forces a break page.</span>
 <span class="c"># For example: 1 means top-level sections start in a new page</span>
 <span class="c"># 0 means disabled</span>
 <span class="c">#pdf_break_level = 0</span>
 
-<span class="c"># When a section starts in a new page, force it to be &#39;even&#39;, &#39;odd&#39;,</span>
-<span class="c"># or just use &#39;any&#39;</span>
-<span class="c">#pdf_breakside = &#39;any&#39;</span>
+<span class="c"># When a section starts in a new page, force it to be 'even', 'odd',</span>
+<span class="c"># or just use 'any'</span>
+<span class="c">#pdf_breakside = 'any'</span>
 
 <span class="c"># Insert footnotes where they are defined instead of</span>
 <span class="c"># at the end.</span>
@@ -190,24 +190,24 @@ add the <em>rst2pdf.pdfbuilder</em> to extensions:</p>
 <span class="c">#pdf_use_coverpage = True</span>
 
 <span class="c"># Name of the cover page template to use</span>
-<span class="c">#pdf_cover_template = &#39;sphinxcover.tmpl&#39;</span>
+<span class="c">#pdf_cover_template = 'sphinxcover.tmpl'</span>
 
 <span class="c"># Documents to append as an appendix to all manuals.</span>
 <span class="c">#pdf_appendices = []</span>
 
 <span class="c"># Enable experimental feature to split table cells. Use it</span>
-<span class="c"># if you get &quot;DelayedTable too big&quot; errors</span>
+<span class="c"># if you get "DelayedTable too big" errors</span>
 <span class="c">#pdf_splittables = False</span>
 
 <span class="c"># Set the default DPI for images</span>
 <span class="c">#pdf_default_dpi = 72</span>
 
 <span class="c"># Enable rst2pdf extension modules (default is only vectorpdf)</span>
-<span class="c"># you need vectorpdf if you want to use sphinx&#39;s graphviz support</span>
-<span class="c">#pdf_extensions = [&#39;vectorpdf&#39;]</span>
+<span class="c"># you need vectorpdf if you want to use sphinx's graphviz support</span>
+<span class="c">#pdf_extensions = ['vectorpdf']</span>
 
-<span class="c"># Page template name for &quot;regular&quot; pages</span>
-<span class="c">#pdf_page_template = &#39;cutePage&#39;</span>
+<span class="c"># Page template name for "regular" pages</span>
+<span class="c">#pdf_page_template = 'cutePage'</span>
 
 <span class="c"># Show Table Of Contents at the beginning?</span>
 <span class="c">#pdf_use_toc = True</span>
@@ -219,11 +219,11 @@ add the <em>rst2pdf.pdfbuilder</em> to extensions:</p>
 <span class="n">pdf_use_numbered_links</span> <span class="o">=</span> <span class="bp">False</span>
 
 <span class="c"># Background images fitting mode</span>
-<span class="n">pdf_fit_background_mode</span> <span class="o">=</span> <span class="s">&#39;scale&#39;</span></code></pre></div>
+<span class="n">pdf_fit_background_mode</span> <span class="o">=</span> <span class="s">'scale'</span></code></pre></figure>
 
 <p><strong>3.</strong> build the pdf files</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">sphinx-build -b pdf <span class="nb">source </span>_build/pdf</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">sphinx-build -b pdf <span class="nb">source </span>_build/pdf</code></pre></figure>
 
 <p>make sure you are in the right directory.</p>
 
