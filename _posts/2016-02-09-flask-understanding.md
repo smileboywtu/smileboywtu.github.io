@@ -69,7 +69,7 @@ here is how WSGI deal with a http request:
 
 structure like this:
 
-{% xdot svg %}
+{% xdot png %}
 
 digraph stucture {
 
