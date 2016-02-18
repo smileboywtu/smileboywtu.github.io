@@ -100,8 +100,8 @@ this technology is used in this website.
 
 ## reference
 
-1. ["Decorator for the HTTP Access Control"](http://flask.pocoo.org/snippets/56/)
-2. ["HTTP access control "](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)
-3. ["Cross-Domain Requests with CORS"](https://staticapps.org/articles/cross-domain-requests-with-cors/)
+1. [Decorator for the HTTP Access Control](http://flask.pocoo.org/snippets/56/)
+2. [HTTP access control ](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS)
+3. [Cross-Domain Requests with CORS](https://staticapps.org/articles/cross-domain-requests-with-cors/)
 
 Happy coding.
