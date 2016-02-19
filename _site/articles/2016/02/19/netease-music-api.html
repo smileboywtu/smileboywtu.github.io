@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>netease music api usage</title>
+    <meta name="description" content="netease music is the most popular between young people. it use the machinelearning technology to recommend music to the user. this brings much excitingfeelin...">
+
+    <link rel="stylesheet" href=" /css/customer/syntax.css ">
+    <link rel="stylesheet" href=" /css/customer/customer.css ">
+    <!-- bootstrap3 -->
+    <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/02/19/netease-music-api.html">
+
+    <!-- isso comment system -->
+    <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
+
+    <!-- bootstrap 3 -->
+    <script src=" /css/bootstrap3/js/jquery-1.12.0.min.js "></script>
+    <script src=" /css/bootstrap3/js/bootstrap.min.js "></script>
+
+    <!-- owner special recommendation -->
+    <script>
+        $.get(
+            "http://121.42.178.129/recommendation/music",
+            function(data){
+                $('#recommendation').append(data);
+            },"html");
+    </script>
+
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-netease music api usage-title").addClass("active");
+        });
+    </script>
+    
+
+</head>
+
+
+<body>
+    <div>
+        <header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Coder Life</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="id-page-Projects-title">
+                        <a href=" /Projects/ ">Projects</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="id-page-About-title"><a href=" /About/ ">About</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://github.com/smileboywtu">GitHub</a></li>
+                            <li><a href="http://smileboywtu.deercv.com">Deer CV</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+        <div class="container-fluid">
+            <div class="row default">
+                <div class="col-lg-6">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <h2 class="post-title">netease music api usage</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-02-19T12:28:00+08:00" itemprop="datePublished">
+                Feb 19, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <p>netease music is the most popular between young people. it use the machine
+learning technology to recommend music to the user. this brings much exciting
+feeling than any other music box.</p>
+
+<p>this post teach you how to use the netease music web api. you can find the api
+source file <a href="https://github.com/darknessomi/musicbox/blob/master/NEMbox/api.py">here</a>.</p>
+
+<p>to use the api separately you need to install:</p>
+
+<ul>
+  <li>python 2.7</li>
+  <li>requests</li>
+  <li>BeautifulSoup4</li>
+  <li>pycrypto</li>
+</ul>
+
+<p>I recommend you use the <strong>ipython</strong> to test this api.</p>
+
+<p><strong>1.</strong> start ipython</p>
+
+<p><strong>2.</strong> prepare the username and password, you can use phone to login</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="n">username</span> <span class="o">=</span> <span class="s">'your_user_name'</span>
+    <span class="kn">import</span> <span class="nn">hashlib</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="s">'your_password'</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span></code></pre></figure>
+
+<p><strong>3.</strong> login to the netease music</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="kn">from</span> <span class="nn">api</span> <span class="kn">import</span> <span class="n">NetEase</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">NetEase</span><span class="p">()</span>
+    <span class="n">login_info</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span></code></pre></figure>
+
+<p><strong>4.</strong> get the userid from response and request the user playlist</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="n">user_id</span> <span class="o">=</span> <span class="n">login_info</span><span class="p">[</span><span class="s">'account'</span><span class="p">][</span><span class="s">'id'</span><span class="p">]</span>
+    <span class="n">favorites</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">user_playlist</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+    <span class="c"># convert to list</span>
+    <span class="n">top_list</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">dig_info</span><span class="p">(</span><span class="n">favorites</span><span class="p">,</span> <span class="s">"top_playlists"</span><span class="p">)</span></code></pre></figure>
+
+<p><strong>5.</strong> get the sublist of the top_list</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">    <span class="n">user_list_id</span> <span class="o">=</span> <span class="n">top_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'playlist_id'</span><span class="p">]</span>
+    <span class="c"># use list id to get more detail</span>
+    <span class="n">songs</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">playlist_detail</span><span class="p">(</span><span class="n">user_list_id</span><span class="p">)</span>
+    <span class="n">song_list</span> <span class="o">=</span> <span class="n">instance</span><span class="o">.</span><span class="n">dig_info</span><span class="p">(</span><span class="n">songs</span><span class="p">,</span> <span class="s">"songs"</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">song_list</span></code></pre></figure>
+
+<p><strong>6.</strong> get the list</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="p">[</span>
+    <span class="o">...</span>
+
+    <span class="p">{</span><span class="s">'album_name'</span><span class="p">:</span> <span class="s">u"Ich hab' Dich lieb"</span><span class="p">,</span>
+    <span class="s">'artist'</span><span class="p">:</span> <span class="s">u'Schnuffel'</span><span class="p">,</span>
+    <span class="s">'mp3_url'</span><span class="p">:</span> <span class="s">'http://m2.music.126.net/dMyZL7vNBvzhrPYFuOHI2A==/1241348627769500.mp3'</span><span class="p">,</span>
+    <span class="s">'quality'</span><span class="p">:</span> <span class="s">'LD 96k'</span><span class="p">,</span>
+    <span class="s">'song_id'</span><span class="p">:</span> <span class="mi">19098254</span><span class="p">,</span>
+    <span class="s">'song_name'</span><span class="p">:</span> <span class="s">u'H</span><span class="se">\xe4</span><span class="s">schenparty'</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">'album_name'</span><span class="p">:</span> <span class="s">u'</span><span class="se">\u7231\u7684\u4e3b\u9898\u66f2</span><span class="s"> </span><span class="se">\u53f0\u6e7e\u7248</span><span class="s">'</span><span class="p">,</span>
+    <span class="s">'artist'</span><span class="p">:</span> <span class="s">u'</span><span class="se">\u7fa4\u661f</span><span class="s">'</span><span class="p">,</span>
+    <span class="s">'mp3_url'</span><span class="p">:</span> <span class="s">'http://m2.music.126.net/2nYy3sLgrYphuK7YoPBsJg==/1214960348701276.mp3'</span><span class="p">,</span>
+    <span class="s">'quality'</span><span class="p">:</span> <span class="s">'HD 320k'</span><span class="p">,</span>
+    <span class="s">'song_id'</span><span class="p">:</span> <span class="mi">4874797</span><span class="p">,</span>
+    <span class="s">'song_name'</span><span class="p">:</span> <span class="s">u'Hear Me Cry'</span><span class="p">}]</span></code></pre></figure>
+
+<p>This is very useful if you want to integrate the netease music into your own app
+or website, you can use this one.</p>
+
+<p>Happy coding.</p>
+
+
+    </div>
+
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
+
+</div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="recommendation-default">
+                        <div class="table-responsive" id="recommendation">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+    <div class="container-fluid">
+        <div class="container row">
+            <div class="col-xs-5">
+                <p class="text-muted text-left text-primary text-justify">
+                    <small>Designed By Smile Boy.</small>
+                </p>
+            </div>
+            <div class="col-xs-1">
+                <a href="https://github.com/smileboywtu">
+                    <span class="icon"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+
+</html>
