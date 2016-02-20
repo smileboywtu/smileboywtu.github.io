@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>understand http workflow</title>
+    <meta name="description" content="&gt;&gt; what happens when I follow the link?">
+
+    <link rel="stylesheet" href=" /css/customer/syntax.css ">
+    <link rel="stylesheet" href=" /css/customer/customer.css ">
+    <!-- bootstrap3 -->
+    <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/02/20/understand-http.html">
+
+    <!-- isso comment system -->
+    <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
+
+    <!-- bootstrap 3 -->
+    <script src=" /css/bootstrap3/js/jquery-1.12.0.min.js "></script>
+    <script src=" /css/bootstrap3/js/bootstrap.min.js "></script>
+
+    <!-- owner special recommendation -->
+    <script>
+        $.get(
+            "http://121.42.178.129/recommendation/music",
+            function(data){
+                $('#recommendation').append(data);
+            },"html");
+    </script>
+
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-understand http workflow-title").addClass("active");
+        });
+    </script>
+    
+
+</head>
+
+
+<body>
+    <div>
+        <header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Coder Life</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="id-page-Projects-title">
+                        <a href=" /Projects/ ">Projects</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="id-page-About-title"><a href=" /About/ ">About</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://github.com/smileboywtu">GitHub</a></li>
+                            <li><a href="http://smileboywtu.deercv.com">Deer CV</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+        <div class="container-fluid">
+            <div class="row default">
+                <div class="col-lg-6">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <h2 class="post-title">understand http workflow</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-02-20T17:29:00+08:00" itemprop="datePublished">
+                Feb 20, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <p>&gt;&gt; <strong style="color:red;">what happens when I follow the link?</strong></p>
+
+<p><strong style="color:blue;">Step 1: parsing the url</strong></p>
+
+<p>The first thing the browser has to do is to look at the URL of the new document to find out how to get hold of the new document. Most URLs have this basic form: “protocol://server/request-URI”. The protocol part describes how to tell the server which document that you want and how to retrieve it. The server part tells the browser which server to contact, and the request-URI is the name used by the web server to identify the document. (I use the term request-URI since it’s the one used by the HTTP standard, and I can’t think of anything else that is general enough to not be misleading.)</p>
+
+<p><strong style="color:blue;">Step 2: sending the request</strong></p>
+
+<p>Usually, the protocol is “http”. To retrieve a document via HTTP the browser transmits the following request to the server: “GET /request-URI HTTP/version”, where version tells the server which HTTP version is used.</p>
+
+<p>One important point here is that this request string is all the server ever sees. So the server doesn’t care if the request came from a browser, a link checker, a validator, a search engine robot or if you typed it in manually. It just performs the request and returns the result.</p>
+
+<p><strong style="color:blue;">Step 3: the server response</strong></p>
+
+<p>When the server receives the HTTP request it locates the appropriate document and returns it. However, an HTTP response is required to have a particular form. It must look like this:</p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="err">HTTP/[VER] [CODE] [TEXT]
+Field1: Value1
+Field2: Value2
+
+...Document content here...</span></code></pre></figure>
+
+<p>The first line shows the HTTP version used, followed by a three-digit number (the HTTP status code) and a reason phrase meant for humans. Usually the code is 200 (which basically means that all is well) and the phrase “OK”. The first line is followed by some lines called the header, which contains information about the document. The header ends with a blank line, followed by the document content. This is a typical header:</p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="k">HTTP</span><span class="o">/</span><span class="m">1.0</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Server</span><span class="p">:</span> <span class="s">Netscape-Communications/1.1</span>
+<span class="na">Date</span><span class="p">:</span> <span class="s">Tuesday, 25-Nov-97 01:22:04 GMT</span>
+<span class="na">Last-modified</span><span class="p">:</span> <span class="s">Thursday, 20-Nov-97 10:44:53 GMT</span>
+<span class="na">Content-length</span><span class="p">:</span> <span class="s">6372</span>
+<span class="na">Content-type</span><span class="p">:</span> <span class="s">text/html</span>
+
+<span class="cp">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"&gt;</span>
+<span class="nt">&lt;HTML&gt;</span>
+...followed by document content...</code></pre></figure>
+
+<p>We see from the first line that the request was successful. The second line is optional and tells us that the server runs the Netscape Communications web server, version 1.1. We then get what the server thinks is the current date and when the document was modified last, followed by the size of the document in bytes and the most important field: “Content-type”.</p>
+
+<p>The content-type field is used by the browser to tell which format the document it receives is in. HTML is identified with “text/html”, ordinary text with “text/plain”, a GIF is “image/gif” and so on. The advantage of this is that the URL can have any ending and the browser will still get it right.</p>
+
+<p>An important concept here is that to the browser, the server works as a black box. Ie: the browser requests a specific document and the document is either returned or an error message is returned. How the server produces the document remains unknown to the browser. This means that the server can read it from a file, run a program that generates it, compile it by parsing some kind of command file or (very unlikely, but in principle possible) have it dictated by the server administrator via speech recognition software. This gives the server administrator great freedom to experiment with different kinds of services as the users don’t care (or even know) how pages are produced.</p>
+
+<p><strong style="color:blue;">HTTP Methods</strong></p>
+
+<p>all available methods:</p>
+
+<ul>
+  <li>
+    <p><strong>GET</strong>:
+The GET method is used to retrieve information from the given server using a given URI. Requests using GET should only retrieve data and should have no other effect on the data.</p>
+  </li>
+  <li>
+    <p><strong>HEAD</strong>:
+Same as GET, but transfers the status line and header section only.</p>
+  </li>
+  <li>
+    <p><strong>POST</strong>:
+A POST request is used to send data to the server, for example, customer information, file upload, etc. using HTML forms.</p>
+  </li>
+  <li>
+    <p><strong>PUT</strong>:
+Replaces all current representations of the target resource with the uploaded content.</p>
+  </li>
+  <li>
+    <p><strong>DELETE</strong>:
+Removes all current representations of the target resource given by a URI.</p>
+  </li>
+  <li>
+    <p><strong>CONNECT</strong>:
+Establishes a tunnel to the server identified by a given URI.</p>
+  </li>
+  <li>
+    <p><strong>OPTION</strong>:
+Describes the communication options for the target resource.</p>
+  </li>
+  <li>
+    <p><strong>TRACE</strong>:
+Performs a message loop-back test along the path to the target resource.</p>
+  </li>
+</ul>
+
+<p><strong style="color: blue;">HTTP Versions</strong></p>
+
+<p>So far there are three versions of HTTP. The first one was HTTP/0.9, which was truly primitive and never really specified in any standard. This was corrected by HTTP/1.0, which was issued as a standard in RFC 1945. (See references). HTTP/1.0 is the version of HTTP that is in common use today (usually with some 1.1 extensions), while HTTP/0.9 is rarely, if ever, used by browsers. (Some simpler HTTP clients still use it since they don’t need the later extensions.)</p>
+
+<p>RFC 2068 describes HTTP/1.1, which extends and improves HTTP/1.0 in a number of areas. Very few browsers support it (MSIE 4.0 is the only one known to the author), but servers are beginning to do so.</p>
+
+<p>The major differences are a some extensions in HTTP/1.1 for authoring documents online via HTTP and a feature that lets clients request that the connection be kept open after a request so that it does not have to be reestablished for the next request. This can save some waiting and server load if several requests have to be issued quickly.</p>
+
+<p>This document describes HTTP/1.0, except some sections that cover the HTTP/1.1 extensions. Those will be explicitly labeled.</p>
+
+<p>&gt;&gt; <strong style="color:red;">The request send by the clients</strong></p>
+
+<p><strong style="color:blue;">The shape of a request.</strong></p>
+
+<p>Basically, all requests look like this:</p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="err">[METH] [REQUEST-URI] HTTP/[VER]
+[fieldname1]: [field-value1]
+[fieldname2]: [field-value2]
+
+[request body, if any]</span></code></pre></figure>
+
+<p>The METH (for request method) gives the request method used, of which there are several, and which all do different things. The above example used GET, but below some more are explained. The REQUEST-URI is the identifier of the document on the server, such as “/index.html” or whatever. VER is the HTTP version, like in the response. The header fields are also the same as in the server response.</p>
+
+<p>The request body is only used for requests that transfer data to the server, such as POST and PUT. (Described below.)</p>
+
+<p><strong style="color:blue;">getting document</strong></p>
+
+<p>There are several request types, with the most common one being GET. A GET request basically means “send me this document” and looks like this: “GET document_path HTTP/version”. (Like it was described above.) For the URL “http://www.yahoo.com/” the document_path would be “/”.</p>
+
+<p>However, this first line is not the only thing a user agent (UA) usually sends, although it’s the only thing that’s really necessary. The UA can include a number of header fields in the request to give the server more information. These fields have the form “fieldname: value” and are all put on separate lines after the first request line.</p>
+
+<p>Some of the header fields that can be used with GET are:</p>
+
+<ul>
+  <li>
+    <p><strong>User-Agent</strong>: This is a string identifying the user agent. An English version of Netscape 4.03 running under Windows NT would send “Mozilla/4.03 [en] (WinNT; I ;Nav)”. (Mozilla is the old name for Netscape. See the references for more details.)</p>
+  </li>
+  <li>
+    <p><strong>Referer</strong>: The referer field (yes, it’s misspelled in the standard) tells the server where the user came from, which is very useful for logging and keeping track of who links to ones pages.</p>
+  </li>
+  <li>
+    <p><strong>If-Modified-Since</strong>: If a browser already has a version of the document in its cache it can include this field and set it to the time it retrieved that version. The server can then check if the document has been modified since the browser last downloaded it and send it again if necessary. The whole point is of course that if the document hasn’t changed, then the server can just say so and save some waiting and network traffic.</p>
+  </li>
+  <li>
+    <p><strong>From</strong>: This header field is a spammers dream come true: it is supposed to contain the email address of whoever controls the user agent. Very few, if any, browsers use it, partly because of the threat from spammers. However, web robots should use it, so that webmasters can contact the people responsible for the robot should it misbehave.</p>
+  </li>
+  <li>
+    <p><strong>Authorization</strong>: This field can hold username and password if the document in question requires authorization to be accessed.</p>
+  </li>
+</ul>
+
+<p>To put all these pieces together: this is a typical GET request, as issued by my browser (Opera):</p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="nf">GET</span> <span class="nn">/</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.0</span>
+<span class="na">User-Agent</span><span class="p">:</span> <span class="s">Mozilla/3.0 (compatible; Opera/3.0; Windows 95/NT4)</span>
+<span class="na">Accept</span><span class="p">:</span> <span class="s">*/*</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">birk105.studby.uio.no:81</span></code></pre></figure>
+
+<p>&gt;&gt; <strong style="color:red;">The response returned by server</strong></p>
+
+<p><strong style="color: blue;">outline</strong></p>
+
+<p>What the server returns consists of a line with the status code, a list of header fields, a blank line and then the requested document, if it is returned at all. Sort of like this:</p>
+
+<figure class="highlight"><pre><code class="language-http" data-lang="http"><span class="err">HTTP/1.0 code text
+Field1: Value1
+Field2: Value2
+
+...Document content here...</span></code></pre></figure>
+
+<p><strong style="color:blue;">the status code</strong></p>
+
+<p>The status codes are all three-digit numbers that are grouped by the first digit into 5 groups. The reason phrases given with the status codes below are just suggestions. Server can return any reason phrase they wish.</p>
+
+<p><strong>1xx: Informational</strong></p>
+
+<p>No 1xx status codes are defined, and they are reserved for experimental purposes only.</p>
+
+<p><strong>2xx: Successful</strong></p>
+
+<p>Means that the request was processed successfully.</p>
+
+<p>200 OK
+Means that the server did whatever the client wanted it to, and all is well.
+Others
+The rest of the 2xx status codes are mainly meant for script processing and are not often used.</p>
+
+<p><strong>3xx: Redirection</strong></p>
+
+<p>Means that the resource is somewhere else and that the client should try again at a new address.</p>
+
+<ul>
+  <li>301 Moved permanently</li>
+</ul>
+
+<blockquote>
+  <p>The resource the client requested is somewhere else, and the client should go there to get it. Any links or other references to this resource should be updated.</p>
+</blockquote>
+
+<ul>
+  <li>302 Moved temporarily</li>
+</ul>
+
+<blockquote>
+  <p>This means the same as the 301 response, but links should now not be updated, since the resource may be moved again in the future.</p>
+</blockquote>
+
+<ul>
+  <li>304 Not modified</li>
+</ul>
+
+<blockquote>
+  <p>This response can be returned if the client used the if-modified-since header field and the resource has not been modified since the given time. Simply means that the cached version should be displayed for the user.</p>
+</blockquote>
+
+<p><strong>4xx: Client error</strong></p>
+
+<p>Means that the client screwed up somehow, usually by asking for something it should not have asked for.</p>
+
+<ul>
+  <li>400: Bad request</li>
+</ul>
+
+<blockquote>
+  <p>The request sent by the client didn’t have the correct syntax.</p>
+</blockquote>
+
+<ul>
+  <li>401: Unauthorized</li>
+</ul>
+
+<blockquote>
+  <p>Means that the client is not allowed to access the resource. This may change if the client retries with an authorization header.</p>
+</blockquote>
+
+<ul>
+  <li>403: Forbidden</li>
+</ul>
+
+<blockquote>
+  <p>The client is not allowed to access the resource and authorization will not help.</p>
+</blockquote>
+
+<ul>
+  <li>404: Not found</li>
+</ul>
+
+<blockquote>
+  <p>Seen this one before? :) It means that the server has not heard of the resource and has no further clues as to what the client should do about it. In other words: dead link.</p>
+</blockquote>
+
+<p><strong>5xx: Server error</strong></p>
+
+<p>This means that the server screwed up or that it couldn’t do as the client requested.</p>
+
+<ul>
+  <li>500: Internal server error</li>
+</ul>
+
+<blockquote>
+  <p>Something went wrong inside the server.</p>
+</blockquote>
+
+<ul>
+  <li>501: Not implemented</li>
+</ul>
+
+<blockquote>
+  <p>The request method is not supported by the server.</p>
+</blockquote>
+
+<ul>
+  <li>503: Service unavailable</li>
+</ul>
+
+<blockquote>
+  <p>This sometimes happens if the server is too heavily loaded and cannot service the request. Usually, the solution is for the client to wait a while and try again.</p>
+</blockquote>
+
+<p><strong style="color: blue;">The response header fields</strong></p>
+
+<p>These are the header fields a server can return in response to a request.</p>
+
+<ul>
+  <li><strong>Location</strong>:
+This tells the user agent where the resource it requested can be found. The value is just the URL of the new resource.</li>
+  <li><strong>Server</strong>:
+This tells the user agent which web server is used. Nearly all web servers return this header, although some leave it out.</li>
+  <li><strong>Content-length</strong>:
+This gives the size of the resource, in bytes.</li>
+  <li><strong>Content-type</strong>:
+This describes the file format of the resource.</li>
+  <li><strong>Content-encoding</strong>:
+This means that the resource has been coded in some way and must be decoded before use.</li>
+  <li><strong>Expires</strong>:
+This field can be set for data that are updated at a known time (for instance if they are generated by a script). It is used to prevent browsers from caching the resource beyond the given date.</li>
+  <li><strong>Last-modified</strong>:
+This tells the browser when the resource was last modified. Can be useful for mirroring, update notification etc.</li>
+</ul>
+
+<p>Happy coding.</p>
+
+    </div>
+
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
+
+</div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="recommendation-default">
+                        <div class="table-responsive" id="recommendation">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+    <div class="container-fluid">
+        <div class="container row">
+            <div class="col-xs-5">
+                <p class="text-muted text-left text-primary text-justify">
+                    <small>Designed By Smile Boy.</small>
+                </p>
+            </div>
+            <div class="col-xs-1">
+                <a href="https://github.com/smileboywtu">
+                    <span class="icon"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+
+</html>
