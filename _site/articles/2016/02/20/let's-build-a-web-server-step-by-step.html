@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>let's build a web server step by step. part 1.</title>
+    <meta name="description" content="  source:  https://ruslanspivak.com/">
+
+    <link rel="stylesheet" href=" /css/customer/syntax.css ">
+    <link rel="stylesheet" href=" /css/customer/customer.css ">
+    <!-- bootstrap3 -->
+    <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/02/20/let's-build-a-web-server-step-by-step.html">
+
+    <!-- isso comment system -->
+    <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
+
+    <!-- bootstrap 3 -->
+    <script src=" /css/bootstrap3/js/jquery-1.12.0.min.js "></script>
+    <script src=" /css/bootstrap3/js/bootstrap.min.js "></script>
+
+    <!-- owner special recommendation -->
+    <script>
+        $.get(
+            "http://121.42.178.129/recommendation/music",
+            function(data){
+                $('#recommendation').append(data);
+            },"html");
+    </script>
+
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-let's build a web server step by step. part 1.-title").addClass("active");
+        });
+    </script>
+    
+
+</head>
+
+
+<body>
+    <div>
+        <header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Coder Life</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="id-page-Projects-title">
+                        <a href=" /Projects/ ">Projects</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="id-page-About-title"><a href=" /About/ ">About</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://github.com/smileboywtu">GitHub</a></li>
+                            <li><a href="http://smileboywtu.deercv.com">Deer CV</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+        <div class="container-fluid">
+            <div class="row default">
+                <div class="col-lg-6">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <h2 class="post-title">let's build a web server step by step. part 1.</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-02-20T09:32:00+08:00" itemprop="datePublished">
+                Feb 20, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <blockquote>
+  <p><strong>source</strong>:</p>
+
+  <p><a href="https://ruslanspivak.com/">https://ruslanspivak.com/</a></p>
+</blockquote>
+
+<p><strong>I like the several part very much, because I start web sever design from these
+parts. I hope you will get benefit from these series.</strong></p>
+
+<p>Out for a walk one day, a woman came across a construction site and saw three men working. She asked the first man, “What are you doing?” Annoyed by the question, the first man barked, “Can’t you see that I’m laying bricks?” Not satisfied with the answer, she asked the second man what he was doing. The second man answered, “I’m building a brick wall.” Then, turning his attention to the first man, he said, “Hey, you just passed the end of the wall. You need to take off that last brick.” Again not satisfied with the answer, she asked the third man what he was doing. And the man said to her while looking up in the sky, “I am building the biggest cathedral this world has ever known.” While he was standing there and looking up in the sky the other two men started arguing about the errant brick. The man turned to the first two men and said, “Hey guys, don’t worry about that brick. It’s an inside wall, it will get plastered over and no one will ever see that brick. Just move on to another layer.”</p>
+
+<p>The moral of the story is that when you know the whole system and understand how different pieces fit together (bricks, walls, cathedral), you can identify and fix problems faster (errant brick).</p>
+
+<p>What does it have to do with creating your own Web server from scratch?</p>
+
+<p><strong>I believe to become a better developer you MUST get a better understanding of the underlying software systems you use on a daily basis and that includes programming languages, compilers and interpreters, databases and operating systems, web servers and web frameworks. And, to get a better and deeper understanding of those systems you MUST re-build them from scratch, brick by brick, wall by wall.</strong></p>
+
+<p>Confucius put it this way:</p>
+
+<blockquote>
+  <p><em>“I hear and I forget.”</em></p>
+</blockquote>
+
+<p><img class="img-responsive" src="/downloads/posts/build_web_server/LSBAWS_confucius_hear.png" alt="image" /></p>
+
+<blockquote>
+  <p><em>“I see and I remember.”</em></p>
+</blockquote>
+
+<p><img class="img-responsive" src="/downloads/posts/build_web_server/LSBAWS_confucius_see.png" alt="image" /></p>
+
+<blockquote>
+  <p><em>“I do and I understand.”</em></p>
+</blockquote>
+
+<p><img class="img-responsive" src="/downloads/posts/build_web_server/LSBAWS_confucius_do.png" alt="image" /></p>
+
+<p>I hope at this point you’re convinced that it’s a good idea to start re-building different softwaresystems to learn how they work.</p>
+
+<p>In this three-part series I will show you how to build your own basic Web server. Let’s get started.</p>
+
+<p>First things first, what is a Web server?</p>
+
+<p><img class="img-responsive" src="/downloads/posts/build_web_server/LSBAWS_HTTP_request_response.png" alt="image" /></p>
+
+<p>In a nutshell it’s a networking server that sits on a physical server (oops, a server on a server) and waits for a client to send a request. When it receives a request, it generates a response and sends it back to the client. The communication between a client and a server happens using HTTP protocol. A client can be your browser or any other software that speaks HTTP.</p>
+
+<p>What would a very simple implementation of a Web server look like? Here is my take on it. The example is in Python but even if you don’t know Python (it’s a very easy language to pick up, try it!) you still should be able to understand concepts from the code and explanations below:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span> <span class="o">=</span> <span class="s">''</span><span class="p">,</span> <span class="mi">8888</span>
+
+<span class="n">listen_socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+<span class="n">listen_socket</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">listen_socket</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
+<span class="n">listen_socket</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span> <span class="s">'Serving HTTP on port </span><span class="si">%</span><span class="s">s ...'</span> <span class="o">%</span> <span class="n">PORT</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">client_connection</span><span class="p">,</span> <span class="n">client_address</span> <span class="o">=</span> <span class="n">listen_socket</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">client_connection</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">request</span>
+
+    <span class="n">http_response</span> <span class="o">=</span> <span class="s">"""</span><span class="se">\
+</span><span class="s">HTTP/1.1 200 OK
+
+Hello, World!
+"""</span>
+    <span class="n">client_connection</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">http_response</span><span class="p">)</span>
+    <span class="n">client_connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
+
+<p>Save the above code as webserver1.py or download it directly from GitHub and run it on the command line like this</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>python webserver1.py
+Serving HTTP on port 8888 …</code></pre></figure>
+
+<p>Now type in the following URL in your Web browser’s address bar http://localhost:8888/hello, hit Enter, and see magic in action. You should see “Hello, World!” displayed in your browser like this:</p>
+
+<p><img class="img-responsive" src="/downloads/posts/build_web_server/browser_hello_world.png" alt="image" /></p>
+
+<p>Just do it, seriously. I will wait for you while you’re testing it.</p>
+
+<p>Done? Great. Now let’s discuss how it all actually works.</p>
+
+<p>First let’s start with the Web address you’ve entered. It’s called an URL and here is its basic structure:</p>
+
+<p><img class="img-responsive" src="/downloads/posts/build_web_server/LSBAWS_URL_Web_address.png" alt="image" /></p>
+
+<p>This is how you tell your browser the address of the Web server it needs to find and connect to and the page (path) on the server to fetch for you. Before your browser can send a HTTP request though, it first needs to establish a TCP connection with the Web server. Then it sends an HTTP request over the TCP connection to the server and waits for the server to send an HTTP response back. And when your browser receives the response it displays it, in this case it displays “Hello, World!”</p>
+
+<p>Let’s explore in more detail how the client and the server establish a TCP connection before sending HTTP requests and responses. To do that they both use so-called sockets. Instead of using a browser directly you are going to simulate your browser manually by using telnet on the command line.</p>
+
+<p>On the same computer you’re running the Web server fire up a telnet session on the command line specifying a host to connect to localhost and the port to connect to 8888 and then press Enter:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>telnet localhost 8888
+Trying 127.0.0.1 …
+Connected to localhost.</code></pre></figure>
+
+<p>At this point you’ve established a TCP connection with the server running on your local host and ready to send and receive HTTP messages. In the picture below you can see a standard procedure a server has to go through to be able to accept new TCP connections.</p>
+
+<p><img class="img-responsive" src="/downloads/posts/build_web_server/LSBAWS_socket.png" alt="image" /></p>
+
+<p>In the same telnet session type GET /hello HTTP/1.1 and hit Enter:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="gp">$ </span>telnet localhost 8888
+Trying 127.0.0.1 …
+Connected to localhost.
+GET /hello HTTP/1.1
+
+HTTP/1.1 200 OK
+Hello, World!</code></pre></figure>
+
+<p>You’ve just manually simulated your browser! You sent an HTTP request and got an HTTP response back. This is the basic structure of an HTTP request:</p>
+
+<p><img class="img-responsive" src="/downloads/posts/build_web_server/LSBAWS_HTTP_request_anatomy.png" alt="image" /></p>
+
+<p>The HTTP request consists of the line indicating the HTTP method (GET, because we are asking our server to return us something), the path /hello that indicates a “page” on the server we want and the protocol version.</p>
+
+<p>For simplicity’s sake our Web server at this point completely ignores the above request line. You could just as well type in any garbage instead of “GET /hello HTTP/1.1” and you would still get back a “Hello, World!” response.</p>
+
+<p>Once you’ve typed the request line and hit Enter the client sends the request to the server, the server reads the request line, prints it and returns the proper HTTP response.</p>
+
+<p>Here is the HTTP response that the server sends back to your client (telnet in this case):</p>
+
+<p><img class="img-responsive" src="/downloads/posts/build_web_server/LSBAWS_HTTP_response_anatomy.png" alt="image" /></p>
+
+<p>Let’s dissect it. The response consists of a status line HTTP/1.1 200 OK, followed by a required empty line, and then the HTTP response body.</p>
+
+<p>The response status line HTTP/1.1 200 OK consists of the HTTP Version, the HTTP status code and the HTTP status code reason phrase OK. When the browser gets the response, it displays the body of the response and that’s why you see “Hello, World!” in your browser.</p>
+
+<p>And that’s the basic model of how a Web server works. To sum it up: The Web server creates a listening socket and starts accepting new connections in a loop. The client initiates a TCP connection and, after successfully establishing it, the client sends an HTTP request to the server and the server responds with an HTTP response that gets displayed to the user. To establish a TCP connection both clients and servers use sockets.</p>
+
+<p>Now you have a very basic working Web server that you can test with your browser or some other HTTP client. As you’ve seen and hopefully tried, you can also be a human HTTP client too, by using telnet and typing HTTP requests manually.</p>
+
+<p>Here’s a question for you: “How do you run a Django application, Flask application, and Pyramid application under your freshly minted Web server without making a single change to the server to accommodate all those different Web frameworks?”</p>
+
+    </div>
+
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
+
+</div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="recommendation-default">
+                        <div class="table-responsive" id="recommendation">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+    <div class="container-fluid">
+        <div class="container row">
+            <div class="col-xs-5">
+                <p class="text-muted text-left text-primary text-justify">
+                    <small>Designed By Smile Boy.</small>
+                </p>
+            </div>
+            <div class="col-xs-1">
+                <a href="https://github.com/smileboywtu">
+                    <span class="icon"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+
+</html>
