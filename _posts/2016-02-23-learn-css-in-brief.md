@@ -342,3 +342,117 @@ section {
 {% endhighlight %}
 
 When this layout is too narrow, the nav gets squished. Worse, you can't use min-width on the nav to fix it, because the right column wouldn't respect it.
+
+<span class='property'>media queries</span>
+
+"Responsive Design" is the strategy of making a site that "responds" to the browser and device that it is being shown on... by looking awesome no matter what.
+
+Media queries are the most powerful tool for doing this. Let's take our layout that uses percent widths and have it display in one column when the browser is too small to fit the menu in the sidebar:
+
+{% highlight css %}
+
+@media screen and (min-width:600px) {
+  nav {
+    float: left;
+    width: 25%;
+  }
+  section {
+    margin-left: 25%;
+  }
+}
+@media screen and (max-width:599px) {
+  nav li {
+    display: inline;
+  }
+}
+
+{% endhighlight %}
+
+<span class='property'>inline-block</span>
+
+You can create a grid of boxes that fills the browser width and wraps nicely. This has been possible for a long time using float, but now with inline-block it's even easier. inline-block elements are like inline elements but they can have a width and height.
+
+{% highlight css %}
+
+.box {
+  float: left;
+  width: 200px;
+  height: 100px;
+  margin: 1em;
+}
+.after-box {
+  clear: left;
+}
+
+{% endhighlight %}
+
+easy way to do this:
+
+{% highlight css %}
+
+.box2 {
+  display: inline-block;
+  width: 200px;
+  height: 100px;
+  margin: 1em;
+}
+
+{% endhighlight %}
+
+<span class='property'>column</span>
+
+There is a new set of CSS properties that let you easily make multi-column text. Have a look:
+
+{% highlight css %}
+
+.three-column {
+  padding: 1em;
+  -moz-column-count: 3;
+  -moz-column-gap: 1em;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 1em;
+  column-count: 3;
+  column-gap: 1em;
+}
+
+{% endhighlight %}
+
+CSS columns are very new, so you need to use the prefixes, and it won't work through IE9 or in Opera Mini.
+
+<span class='property'>flexbox</span>
+
+The new flexbox layout mode is poised to redefine how we do layouts in CSS. Unfortunately the specification has changed a lot recently, so it's implemented differently in different browsers.
+
+{% highlight css %}
+
+.container {
+  display: -webkit-flex;
+  display: flex;
+}
+nav {
+  width: 200px;
+}
+.flex-column {
+  -webkit-flex: 1;
+          flex: 1;
+}
+
+{% endhighlight %}
+
+make the block vertical center:
+
+{% highlight css %}
+
+.vertical-container {
+  height: 300px;
+  display: -webkit-flex;
+  display:         flex;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
+
+{% endhighlight %}
+
+Happy code.
