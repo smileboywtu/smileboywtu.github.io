@@ -5,7 +5,11 @@ date:   2016-02-25 17:33:00 +0800
 categories: articles
 ---
 
-<h2>contents</h2>
+> **source**:
+>
+> [http://www.toves.org/books/bitops/](http://www.toves.org/books/bitops)
+
+<h2>Contents</h2>
 
 In this document, we'll study how a program can manipulate computers' integer
 representation directly using bit operators. This is sometimes pejoratively
@@ -116,3 +120,144 @@ conditional operator (?:)
 
 At the bottom level, you can see that the bitwise and shift operators can be
 combined with the assignment operator, much like +=.
+
+<h2>Bits As Flag</h2>
+
+So why would one want to use bitwise operators? One of the most important applications is to use an integer to hold a set of flags, where each bit corresponds to a different “fact.” A prime example of this comes from the Linux file system, where each file has a number called its mode that indicates who can access the file. If the 4's bit is set, then anybody can read the file; if the 2's bit is set, then anybody can modify the file; if the 128's bit is set, then the person who “owns” the file can modify it; and if the 256's bit is set, then the person who “owns” the file can read it. (The meanings for other bits are more complex.)
+
+You might retrieve this integer in a program, but inevitably you will want to decode it. For example, what if our C program wants to check whether the owner has permission to modify a file? We would want to check whether the 128's bit is set. The most straightforward way to do this is to use the AND operator.
+
+{% highlight c %}
+
+if( (mode & 128) != 0 ) {
+        ;
+}
+
+{% endhighlight %}
+
+By doing a bitwise AND with 128, we are making it so that only the 128's bit will remain — all other bits in 128 are 0, and anything ANDed with 0 is 0. The result will be 0 if mode's 128's bit is 0, since all other bits become 0 when ANDed with 128; and if mode's 128's bit is 1, the result will be nonzero. So our if statement compares the result of the bitwise AND with zero.
+
+To a casual observer, the appearance of 128 here seems quite meaningless. So the header files define constants that correspond to each of the bits to allow us to refer to the bits in a less obscure way. For owner write permission, the constant 128 is named S_IWUSR — the W stands for write permission, and USR stands for the user; the S and I are simply to ensure that the constant's name is distinct from all other constants' names. So we'd instead write the following.
+
+{% highlight c %}
+
+if( (mode & S_IWUSER) != 0 ) {
+    ;
+}
+
+{% endhighlight %}
+
+When we create a new file, we might want to indicate the permissions for this new file. For this, we would use the OR operator to combine several bits together.
+
+{% highlight c %}
+
+creat("new_file.txt",
+    S_IWUSR | S_IRUSR | S_IROTH);
+
+{% endhighlight %}
+
+(Yes, the function is named creat. Ken Thompson was once asked if he would do anything differently if he were to design UNIX again. He responded, “I'd spell creat with an e.”)
+
+This application of binary representation and bit operators extends beyond just file permissions. Three additional examples: An integer representation can indicate which of the mouse buttons and modifier keys are down, so when a program is responding to pressing a mouse button, it can retrieve a single number indicating the current combination, like control-right-click or shift-alt-left-click. Java's libraries also use flags for indicating whether a font is plain, bold, italic, or bold italic. And Python's re library uses flags for options on how regular expressions should be interpreted.
+
+<h2>Count One Bit</h2>
+
+Let's now ponder a popular programmers' puzzler: Write a function countOnes() that, given an int value, returns the number of bits in that number that are set to 1. For example, countOnes(21) should return 3, since 21's binary representation 10101(2) has three one bits in it. In fact, I visited Microsoft once interviewing for an internship, and one interviewer spent our appointment discussing various solutions to this question. (Many software companies like to spend interviews gauging interest and mastery using problems like this.)
+
+<h3> simple technique </h3>
+
+The simplest technique is right-shift the number 32 times, counting the number of times you right-shift a one bit off.
+
+{% highlight c %}
+
+int countOnesA(int num) {
+    int ret = 0;
+    int cur = num;
+    int i;
+    for (i = 0; i < 32; i++) {
+        ret += cur & 1;
+        cur >>= 1;
+    }
+    return ret;
+}
+
+{% endhighlight %}
+
+Note the importance of the parentheses in the if condition: If they were omitted, then the compiler would interpret the expression as “num & (mask != 0),” since the operator hierarchy places != above &. Because C treats Boolean expressions as integers, this would compile fine, but it would not be what is desired. Many programmers always place parentheses around the Boolean operators because their precedence can result is such unexpected behavior.
+
+<h3>clever technique</h3>
+
+In my interview at Microsoft, I composed essentially countOnesB(), which impressed the interviewer well enough. But then he showed me a different technique, which I have to admit is pretty clever. It begins with the observation that, when you subtract a number by 1, all of the lowest bits change up to and including the lowest 1 bit; but the rest of the bits stay the same. So if I do a bitwise AND of n with n − 1, essentially I will remove the last one bit from n.
+
+Once we observe this, we have only to write code that counts how many times we can remove the final bit in this way before we reach a number with no 1 bits at all (i.e., 0).
+
+{% highlight c %}
+
+int countOnesC(int num) {
+    int ret = 0;
+    int cur = num;
+    while (cur != 0) {
+        cur &= cur - 1;
+        ret++;
+    }
+    return ret;
+}
+
+{% endhighlight %}
+
+<h3>a cleverer technique</h3>
+
+Much later, I heard of yet another technique, which is yet more clever.
+
+{% highlight c %}
+
+int countOnesD(int num) {
+    int ret;
+    ret = (num & 0x55555555)
+        + ((num >> 1) & 0x55555555);
+    ret = (ret & 0x33333333)
+        + ((ret >> 2) & 0x33333333);
+    ret = (ret & 0x0F0F0F0F)
+        + ((ret >> 4) & 0x0F0F0F0F);
+    ret = (ret & 0x00FF00FF)
+        + ((ret >> 8) & 0x00FF00FF);
+    ret = (ret & 0x0000FFFF)
+        + ((ret >> 16) & 0x0000FFFF);
+    return ret;
+}
+
+{% endhighlight %}
+
+The first assignment statement begins with num & 0x55555555. The appearance of 0x55555555 may seem rather random, but recall that its binary representation alternates between zeroes and ones: 0101010101…. The bitwise AND of num with this number gives a version of num where every other bit (the 2's bit, the 8's bit, the 32's bit) has been removed and the remaining bits (1's, 4's, 16's, …) are kept. We'll call this result a.
+
+The right side of this first addition, which we'll call b, involves right-shifting num once and then finding the bitwise AND of this. The result includes all the bits omitted from a, but shifted so that they they line up with a's bits, in the 1's place, 4's place, 16's place, and so on.
+
+This first addition then adds these two results a and b together. The result, placed into ret, has each pair of bits holding the sum of that pair of bits in the original value of num. Let's look at an 8-bit example, 01110110.
+
+{% highlight c %}
+
+num = 0x72;             // 01110010
+a = num & 0x55;	        // 01010000
+b = (num >> 1) & 0x55;	// 00010001
+ret = a + b;	        // 01100001
+
+{% endhighlight %}
+
+The first two bits from num are 0 and 1, and the first two bits from the result are 01, which is 0 + 1. The next two bits from num are 1 and 1, and the next two bits from the result are 10, which is 1 + 1. And so on.
+
+Notice what has happened here: In a single 32-bit addition operation, we have managed to perform 16 different bit-additions at the same time.
+
+Now we proceed to add pairs of bits. Finding ret & 0x33333333 zeroes out every other pair of bits, leaving only the bottom pair (1's and 2's places), the third pair from the bottom (16's and 32's places), and so on. And (ret >> 2) & 0x33333333 finds all the remaining pairs, shifted so they are parallel to ret & 0x33333333. We now add these two groups of pairs together, and we end up with each group of four bits containing the sum of the two pairs previously in those four bits. Let's continue with our example.
+
+{% highlight c %}
+
+ret = 0x61;             // 01100001
+a = ret & 0x33;	        // 00100001
+b = (ret >> 2) & 0x33;	// 00010000
+ret = a + b;	        // 00110001
+
+{% endhighlight %}
+
+Now the first four bits (0011) contain the sum of the first pair of bits from the original ret (01) and the second pair (10); and the second four bits (0001) contain the sum of the third pair (00) and the fourth pair (01). In the original value of num, the three of the first four bits were 1, and now the first four bits contain the number 3 in binary; likewise, the lower four bits in the original num contained one 1 bit, and now the lower four bits contain the number 1 in binary. This is not a coincidence.
+
+The countOnesD() function continues, adding the groups of four bits together, then the groups of eight bits together, and finally the two groups of sixteen bits together. At the end, we have the total number of 1 bits in the original number.
