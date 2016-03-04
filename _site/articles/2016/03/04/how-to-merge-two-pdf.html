@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Coder Life</title>
-    <meta name="description" content="">
+    <title>merge serval pdfs and add watermark</title>
+    <meta name="description" content="my first work in company is to download serval pdfs and merge into, then addthe watermark to the pdf.">
 
     <!-- style -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href=" /css/customer/customer.css ">
     <!-- bootstrap3 -->
     <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
-    <link rel="canonical" href="http://smileboywtu.github.io/">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/03/04/how-to-merge-two-pdf.html">
 
     <!-- isso comment system -->
     <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
@@ -34,6 +34,12 @@
             },"html");
     </script>
 
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-merge serval pdfs and add watermark-title").addClass("active");
+        });
+    </script>
     
 
 </head>
@@ -81,61 +87,67 @@
         <div class="container-fluid">
             <div class="row default">
                 <div class="col-lg-6">
-                    <div>
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <div class="page-header">
-        <h1><small>Article</small></h1>
+    <h2 class="post-title">merge serval pdfs and add watermark</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-03-04T18:31:00+08:00" itemprop="datePublished">
+                Mar 4, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <p>my first work in company is to download serval pdfs and merge into, then add
+the watermark to the pdf.</p>
+
+<p>here I use the python 2.7 and PyPDF2 library.</p>
+
+<p>install the dependency:</p>
+
+<ul>
+  <li>sudo apt-get install python2.7</li>
+  <li>pip install PyPDF2</li>
+</ul>
+
+<p>merge two pdf:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">pdf_merger</span> <span class="o">=</span> <span class="n">PdfFileMerger</span><span class="p">()</span>
+
+<span class="n">current_slice</span> <span class="o">=</span> <span class="n">PdfFileReader</span><span class="p">(</span><span class="s">'test.pdf'</span><span class="p">)</span>
+<span class="n">pdf_merger</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_slice</span><span class="p">)</span>
+
+<span class="n">pdf_merger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'output.pdf'</span><span class="p">)</span></code></pre></figure>
+
+<p>add the watermark to the pdf:</p>
+
+<p>add the watermake to pdf is the same as merging two pdfs, you should first make
+a pdf as your watermark and then merge the first page of the watermark pdf to
+each page of the target pdf.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">watermark_pdf</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">watermark_path</span><span class="p">)</span>
+<span class="n">watermark_pdf</span><span class="o">.</span><span class="n">setFont</span><span class="p">(</span><span class="n">DEFAULT_FONT</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">watermark_pdf</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">watermark_pdf</span><span class="o">.</span><span class="n">setFillColorRGB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">watermark_pdf</span><span class="o">.</span><span class="n">drawString</span><span class="p">(</span><span class="mi">0</span> <span class="o">*</span> <span class="n">inch</span><span class="p">,</span> <span class="n">x</span> <span class="o">*</span> <span class="n">inch</span><span class="p">,</span> <span class="s">"water mark"</span><span class="p">)</span>
+<span class="n">watermark_pdf</span><span class="o">.</span><span class="n">showPage</span><span class="p">()</span>
+<span class="n">watermark_pdf</span><span class="o">.</span><span class="n">save</span><span class="p">()</span></code></pre></figure>
+
+<p>then merge the water with the target pdf which you want to add watermark to.</p>
+
+<p>Happy coding all done.</p>
+
     </div>
 
-    <ul class="posts">
-        
-        <li><span>04 Mar 2016</span> &raquo; <a href="/articles/2016/03/04/how-to-merge-two-pdf.html">merge serval pdfs and add watermark</a></li>
-        
-        <li><span>26 Feb 2016</span> &raquo; <a href="/articles/2016/02/26/number-limit-python.html">python and c integer variable</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/use-bit-operator.html">use bit operator</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/give-it-five-minutes.html">give it five minutes</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/everyone-needs-to-protect-his-dream.html">everyone needs to protect his dream</a></li>
-        
-        <li><span>23 Feb 2016</span> &raquo; <a href="/articles/2016/02/23/learn-css-in-brief.html">learn css in brief</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/understand-http.html">understand http workflow</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/python-with-statement-understanding.html">python with statement</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/let's-build-a-web-server-step-by-step.html">let's build a web server step by step. part 1.</a></li>
-        
-        <li><span>19 Feb 2016</span> &raquo; <a href="/articles/2016/02/19/netease-music-api.html">netease music api usage</a></li>
-        
-        <li><span>18 Feb 2016</span> &raquo; <a href="/articles/2016/02/18/sqlite3-concurrency-detail.html">sqlite3 concurrency detail</a></li>
-        
-        <li><span>18 Feb 2016</span> &raquo; <a href="/articles/2016/02/18/using-cors-python.html">using cors in python flask</a></li>
-        
-        <li><span>13 Feb 2016</span> &raquo; <a href="/articles/2016/02/13/metaclass-in-python.html">metaclass in python</a></li>
-        
-        <li><span>09 Feb 2016</span> &raquo; <a href="/articles/2016/02/09/flask-understanding.html">flask route understanding</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/decorator-in-python.html">python decorator</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/functions-are-first-class-objects-ib-python.html">functions are first class objects in python</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/happy-new-year.html">happy new year</a></li>
-        
-        <li><span>05 Feb 2016</span> &raquo; <a href="/articles/2016/02/05/sphinx-work-with-rst2pdf.html">sphinx work with rst2pdf</a></li>
-        
-        <li><span>01 Feb 2016</span> &raquo; <a href="/articles/2016/02/01/nginx-work-module.html">nginx work module</a></li>
-        
-        <li><span>27 Jan 2016</span> &raquo; <a href="/articles/2016/01/27/nodejs-starter.html">Node.js, Require and Exports</a></li>
-        
-        <li><span>26 Jan 2016</span> &raquo; <a href="/articles/2016/01/26/install-isso-from-source.html">install isso from source</a></li>
-        
-        <li><span>23 Jan 2016</span> &raquo; <a href="/articles/2016/01/23/scrape-web-using-scrapy-and-mongodb.html">scrape web using scrapy and mongodb</a></li>
-        
-        <li><span>22 Jan 2016</span> &raquo; <a href="/articles/2016/01/22/welcome.html">Welcome</a></li>
-        
-    </ul>
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
 
 </div>
 
