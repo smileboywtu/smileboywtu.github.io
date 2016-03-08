@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Coder Life</title>
-    <meta name="description" content="">
+    <title>use ssh in your work</title>
+    <meta name="description" content="ssh is a very useful tool in your work, you can use this to connect to yourdevelop environment or config you github.">
 
     <!-- style -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href=" /css/customer/customer.css ">
     <!-- bootstrap3 -->
     <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
-    <link rel="canonical" href="http://smileboywtu.github.io/">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/03/08/use-ssh-in-your-work.html">
 
     <!-- isso comment system -->
     <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
@@ -34,6 +34,12 @@
             },"html");
     </script>
 
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-use ssh in your work-title").addClass("active");
+        });
+    </script>
     
 
 </head>
@@ -81,67 +87,94 @@
         <div class="container-fluid">
             <div class="row default">
                 <div class="col-lg-6">
-                    <div>
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <div class="page-header">
-        <h1><small>Article</small></h1>
+    <h2 class="post-title">use ssh in your work</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-03-08T09:02:00+08:00" itemprop="datePublished">
+                Mar 8, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <p>ssh is a very useful tool in your work, you can use this to connect to your
+develop environment or config you github.</p>
+
+<h2 id="check-your-existing-public-ssh-key">check your existing public ssh key</h2>
+
+<p>the default ssh key is saved at the <em>~/.ssh</em> directory, so before you start to
+use ssh, you need to check if you already has a public ssh key.</p>
+
+<h2 id="generate-ssh-key-in-you-home">generate ssh key in you home</h2>
+
+<p><strong>1.</strong> generate ssh key</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">ssh-keygen -t rsa -b 4096 -C <span class="s2">"your_email@example.com"</span></code></pre></figure>
+
+<p><strong>2.</strong> start the ssh agent</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">eval</span> <span class="s2">"</span><span class="k">$(</span>ssh-agent -s<span class="k">)</span><span class="s2">"</span></code></pre></figure>
+
+<p><strong>3.</strong> add the ssh key to ssh agent</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">ssh-add ~/.ssh/id_rsa</code></pre></figure>
+
+<p><strong>4.</strong> test your ssh</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">ssh -T git@github.com</code></pre></figure>
+
+<h2 id="add-the-ssh-key-to-your-github">add the ssh key to your github</h2>
+
+<p>after you config the ssh to your github, it’s easy to push the code to your
+remote repository without input your user name and password every time.</p>
+
+<p><strong>1.</strong> head to the ssh directory</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ~/.ssh/
+ls .
+cat <span class="k">*</span>.pub</code></pre></figure>
+
+<p><strong>2.</strong> copy the key and add to your github ssh setting.</p>
+
+<h2 id="use-the-config-file-when-you-connecting-the-develop-environment">use the config file when you connecting the develop environment.</h2>
+
+<p>when you connect to your remote ssh develop environment, like aliyun or other
+ECS server, you will use the ssh. every time you need to input your remote
+address and the username, it’s not easy to remember the host address. so
+use the ssh config file will help you.</p>
+
+<p><strong>1.</strong> create the config file at .ssh directory</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell"><span class="nb">cd</span> ~/.ssh/
+touch config
+vim config</code></pre></figure>
+
+<p><strong>2.</strong> add your remove host information to the config file.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">Host dev_name
+  HostName <span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>
+  User  username
+
+...</code></pre></figure>
+
+<p><strong>3.</strong> now you can connect your ssh develop just use the command</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">ssh dev_name</code></pre></figure>
+
+<p>Happy Coding.</p>
+
     </div>
 
-    <ul class="posts">
-        
-        <li><span>08 Mar 2016</span> &raquo; <a href="/articles/2016/03/08/use-ssh-in-your-work.html">use ssh in your work</a></li>
-        
-        <li><span>07 Mar 2016</span> &raquo; <a href="/articles/2016/03/07/range-and-xrange-in-python.html">range and xrange in python</a></li>
-        
-        <li><span>06 Mar 2016</span> &raquo; <a href="/articles/2016/03/06/understand-http-method.html">understanding http method</a></li>
-        
-        <li><span>04 Mar 2016</span> &raquo; <a href="/articles/2016/03/04/how-to-merge-two-pdf.html">merge serval pdfs and add watermark</a></li>
-        
-        <li><span>26 Feb 2016</span> &raquo; <a href="/articles/2016/02/26/number-limit-python.html">python and c integer variable</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/use-bit-operator.html">use bit operator</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/give-it-five-minutes.html">give it five minutes</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/everyone-needs-to-protect-his-dream.html">everyone needs to protect his dream</a></li>
-        
-        <li><span>23 Feb 2016</span> &raquo; <a href="/articles/2016/02/23/learn-css-in-brief.html">learn css in brief</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/understand-http.html">understand http workflow</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/python-with-statement-understanding.html">python with statement</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/let's-build-a-web-server-step-by-step.html">let's build a web server step by step. part 1.</a></li>
-        
-        <li><span>19 Feb 2016</span> &raquo; <a href="/articles/2016/02/19/netease-music-api.html">netease music api usage</a></li>
-        
-        <li><span>18 Feb 2016</span> &raquo; <a href="/articles/2016/02/18/sqlite3-concurrency-detail.html">sqlite3 concurrency detail</a></li>
-        
-        <li><span>18 Feb 2016</span> &raquo; <a href="/articles/2016/02/18/using-cors-python.html">using cors in python flask</a></li>
-        
-        <li><span>13 Feb 2016</span> &raquo; <a href="/articles/2016/02/13/metaclass-in-python.html">metaclass in python</a></li>
-        
-        <li><span>09 Feb 2016</span> &raquo; <a href="/articles/2016/02/09/flask-understanding.html">flask route understanding</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/decorator-in-python.html">python decorator</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/functions-are-first-class-objects-ib-python.html">functions are first class objects in python</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/happy-new-year.html">happy new year</a></li>
-        
-        <li><span>05 Feb 2016</span> &raquo; <a href="/articles/2016/02/05/sphinx-work-with-rst2pdf.html">sphinx work with rst2pdf</a></li>
-        
-        <li><span>01 Feb 2016</span> &raquo; <a href="/articles/2016/02/01/nginx-work-module.html">nginx work module</a></li>
-        
-        <li><span>27 Jan 2016</span> &raquo; <a href="/articles/2016/01/27/nodejs-starter.html">Node.js, Require and Exports</a></li>
-        
-        <li><span>26 Jan 2016</span> &raquo; <a href="/articles/2016/01/26/install-isso-from-source.html">install isso from source</a></li>
-        
-        <li><span>23 Jan 2016</span> &raquo; <a href="/articles/2016/01/23/scrape-web-using-scrapy-and-mongodb.html">scrape web using scrapy and mongodb</a></li>
-        
-        <li><span>22 Jan 2016</span> &raquo; <a href="/articles/2016/01/22/welcome.html">Welcome</a></li>
-        
-    </ul>
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
 
 </div>
 
