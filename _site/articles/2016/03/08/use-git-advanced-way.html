@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Coder Life</title>
-    <meta name="description" content="">
+    <title>use the git advanced way</title>
+    <meta name="description" content="  futher:  http://stackoverflow.com/questions/67699/clone-all-remote-branches-with-git">
 
     <!-- style -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href=" /css/customer/customer.css ">
     <!-- bootstrap3 -->
     <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
-    <link rel="canonical" href="http://smileboywtu.github.io/">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/03/08/use-git-advanced-way.html">
 
     <!-- isso comment system -->
     <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
@@ -34,6 +34,12 @@
             },"html");
     </script>
 
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-use the git advanced way-title").addClass("active");
+        });
+    </script>
     
 
 </head>
@@ -81,69 +87,63 @@
         <div class="container-fluid">
             <div class="row default">
                 <div class="col-lg-6">
-                    <div>
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <div class="page-header">
-        <h1><small>Article</small></h1>
+    <h2 class="post-title">use the git advanced way</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-03-08T15:20:00+08:00" itemprop="datePublished">
+                Mar 8, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <blockquote>
+  <p><strong>futher</strong>:</p>
+
+  <p><a href="http://stackoverflow.com/questions/67699/clone-all-remote-branches-with-git">http://stackoverflow.com/questions/67699/clone-all-remote-branches-with-git</a></p>
+</blockquote>
+
+<p>git is a very powerful and team cooperation tool using in you primary work.
+here are what I learn these day.</p>
+
+<p>after you entering a company, you may have to develop a product hold by the
+company, so you need to develop based on the previous code.</p>
+
+<p><strong>1.</strong> fork the code from the center repository into your repository.
+<strong>2.</strong> clone the code from your own repository into local dirs.
+<strong>3.</strong> after that you may use git remote -v to watch your default push or
+pull repository, you need to add the center repository to your remote. this
+way you can get the newest code from your team, you can push the code into
+your own repository and create a merge request.use git remote add center git@..
+<strong>4.</strong> get all the branch information</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">git fetch origin/center
+git branch -a</code></pre></figure>
+
+<p><strong>5.</strong> get all the branches into local:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">git checkout -b branch_name origin/branch_name</code></pre></figure>
+
+<p><strong>6.</strong> after you create all the branch locally, you can git checkout a local
+branch and then pull the newest code from center.
+<strong>7.</strong> now it’s the time you can develop some code.
+<strong>8.</strong> after done, just push the code to origin and then create the merge request
+online.</p>
+
+<p>Happy coding.</p>
+
     </div>
 
-    <ul class="posts">
-        
-        <li><span>08 Mar 2016</span> &raquo; <a href="/articles/2016/03/08/use-git-advanced-way.html">use the git advanced way</a></li>
-        
-        <li><span>08 Mar 2016</span> &raquo; <a href="/articles/2016/03/08/use-ssh-in-your-work.html">use ssh in your work</a></li>
-        
-        <li><span>07 Mar 2016</span> &raquo; <a href="/articles/2016/03/07/range-and-xrange-in-python.html">range and xrange in python</a></li>
-        
-        <li><span>06 Mar 2016</span> &raquo; <a href="/articles/2016/03/06/understand-http-method.html">understanding http method</a></li>
-        
-        <li><span>04 Mar 2016</span> &raquo; <a href="/articles/2016/03/04/how-to-merge-two-pdf.html">merge serval pdfs and add watermark</a></li>
-        
-        <li><span>26 Feb 2016</span> &raquo; <a href="/articles/2016/02/26/number-limit-python.html">python and c integer variable</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/use-bit-operator.html">use bit operator</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/give-it-five-minutes.html">give it five minutes</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/everyone-needs-to-protect-his-dream.html">everyone needs to protect his dream</a></li>
-        
-        <li><span>23 Feb 2016</span> &raquo; <a href="/articles/2016/02/23/learn-css-in-brief.html">learn css in brief</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/understand-http.html">understand http workflow</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/python-with-statement-understanding.html">python with statement</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/let's-build-a-web-server-step-by-step.html">let's build a web server step by step. part 1.</a></li>
-        
-        <li><span>19 Feb 2016</span> &raquo; <a href="/articles/2016/02/19/netease-music-api.html">netease music api usage</a></li>
-        
-        <li><span>18 Feb 2016</span> &raquo; <a href="/articles/2016/02/18/sqlite3-concurrency-detail.html">sqlite3 concurrency detail</a></li>
-        
-        <li><span>18 Feb 2016</span> &raquo; <a href="/articles/2016/02/18/using-cors-python.html">using cors in python flask</a></li>
-        
-        <li><span>13 Feb 2016</span> &raquo; <a href="/articles/2016/02/13/metaclass-in-python.html">metaclass in python</a></li>
-        
-        <li><span>09 Feb 2016</span> &raquo; <a href="/articles/2016/02/09/flask-understanding.html">flask route understanding</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/decorator-in-python.html">python decorator</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/functions-are-first-class-objects-ib-python.html">functions are first class objects in python</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/happy-new-year.html">happy new year</a></li>
-        
-        <li><span>05 Feb 2016</span> &raquo; <a href="/articles/2016/02/05/sphinx-work-with-rst2pdf.html">sphinx work with rst2pdf</a></li>
-        
-        <li><span>01 Feb 2016</span> &raquo; <a href="/articles/2016/02/01/nginx-work-module.html">nginx work module</a></li>
-        
-        <li><span>27 Jan 2016</span> &raquo; <a href="/articles/2016/01/27/nodejs-starter.html">Node.js, Require and Exports</a></li>
-        
-        <li><span>26 Jan 2016</span> &raquo; <a href="/articles/2016/01/26/install-isso-from-source.html">install isso from source</a></li>
-        
-        <li><span>23 Jan 2016</span> &raquo; <a href="/articles/2016/01/23/scrape-web-using-scrapy-and-mongodb.html">scrape web using scrapy and mongodb</a></li>
-        
-        <li><span>22 Jan 2016</span> &raquo; <a href="/articles/2016/01/22/welcome.html">Welcome</a></li>
-        
-    </ul>
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
 
 </div>
 
