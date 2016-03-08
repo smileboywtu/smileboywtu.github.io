@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  use ssh in your work
-date:   2016-03-08 09:02:00j +0800
+date:   2016-03-08 09:02:00 +0800
 categories: articles
 ---
 
