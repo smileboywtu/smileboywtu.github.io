@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>use pyinstaller pack app on mac</title>
+    <meta name="description" content="introduction">
+
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <link rel="stylesheet" href=" /css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href=" /css/customer/syntax.css ">
+    <link rel="stylesheet" href=" /css/customer/customer.css ">
+    <!-- bootstrap3 -->
+    <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/03/09/using-pyinstaller-to-pack-app-on-mac.html">
+
+    <!-- isso comment system -->
+    <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
+
+    <!-- bootstrap 3 -->
+    <script src=" /css/bootstrap3/js/jquery-1.12.0.min.js "></script>
+    <script src=" /css/bootstrap3/js/bootstrap.min.js "></script>
+
+    <!-- owner special recommendation -->
+    <script>
+        $.get(
+            "http://121.42.178.129/recommendation/music",
+            function(data){
+                $('#recommendation').append(data);
+            },"html");
+    </script>
+
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-use pyinstaller pack app on mac-title").addClass("active");
+        });
+    </script>
+    
+
+</head>
+
+
+<body>
+    <div>
+        <header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Coder Life</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="id-page-Projects-title">
+                        <a href=" /Projects/ ">Projects</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="id-page-About-title"><a href=" /About/ ">About</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://github.com/smileboywtu"><i class="fa fa-github"></i> GitHub</a></li>
+                            <li><a href="http://smileboywtu.deercv.com"><i class="fa fa-user"></i> Deer CV</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+        <div class="container-fluid">
+            <div class="row default">
+                <div class="col-lg-6">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <h2 class="post-title">use pyinstaller pack app on mac</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-03-09T15:13:00+08:00" itemprop="datePublished">
+                Mar 9, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <h2 id="introduction">introduction</h2>
+
+<p>PyInstaller reads a Python script written by you. It analyzes your code to
+discover every other module and library your script needs in order to execute.
+Then it collects copies of all those files – including the active Python
+interpreter! – and puts them with your script in a single folder, or
+optionally in a single executable file.</p>
+
+<p>For the great majority of programs, this can be done with one short command,</p>
+
+<blockquote>
+  <p>pyinstaller myscript.py</p>
+</blockquote>
+
+<p>or with a few added options, for example a windowed application as a single-file
+executable,</p>
+
+<blockquote>
+  <p>pyinstaller –onefile –windowed myscript.py</p>
+</blockquote>
+
+<p>You distribute the bundle as a folder or file to other people, and they can
+execute your program. To your users, the app is self-contained. They do not
+need to install any particular version of Python or any modules. They do not
+need to have Python installed at all.</p>
+
+<h1 id="supported-package-imports">supported package imports</h1>
+
+<p>except for the python egg package, the pyinstaller also support other common
+used package. here is a <a href="https://github.com/pyinstaller/pyinstaller/wiki/Supported-Packages">list</a>.</p>
+
+<p>if you have got into trouble with pack app with pyinstaller, you may first check
+the list and compare with your dependency.</p>
+
+<p>If your script requires files that PyInstaller does not know about, you must help it:</p>
+
+<ul>
+  <li>You can give additional files on the pyinstaller command line.</li>
+  <li>You can give additional import paths on the command line.</li>
+  <li>You can edit the myscript.spec file that PyInstaller writes the first time you
+run it for your script. In the spec file you can tell PyInstaller about code
+modules that are unique to your script.</li>
+  <li>You can write “hook” files that inform PyInstaller of hidden imports. If you
+create a “hook” for a package that other users might also use, you can
+contribute your hook file to PyInstaller.</li>
+</ul>
+
+<p>PyInstaller does not include libraries that should exist in any installation of
+this OS. For example in Linux, it does not bundle any file from /lib or /usr/lib,
+assuming these will be found in every system.</p>
+
+<h2 id="bundling-to-one-folder">bundling to one folder</h2>
+
+<p>When you apply PyInstaller to myscript.py the default result is a single folder
+named myscript.</p>
+
+<p>advantages:</p>
+
+<ul>
+  <li>easy to share with your client</li>
+  <li>easy to update if you do not modify the dependency</li>
+  <li>easy to debug when building, you can check the folder to find out what pyinstaller
+does.</li>
+</ul>
+
+<p>disadvantages:</p>
+
+<ul>
+  <li>destroy the program if a file is missing.</li>
+</ul>
+
+<h2 id="how-it-works">how it works?</h2>
+
+<p>the program packed with the pyinstaller starts at the bootloader. this is the
+heart of the myscript executable in the folder. this booloader is a binary
+executable program works on major os. The bootloader creates a temporary Python
+environment such that the Python interpreter will find all imported modules and
+libraries in the myscript folder.</p>
+
+<h2 id="bundling-to-one-file">bundling to one file</h2>
+
+<p>PyInstaller can bundle your script and all its dependencies into a single
+executable named myscript (myscript.exe in Windows).</p>
+
+<p>A disadvantage is that any related files such as a README must be distributed
+separately. Also, the single executable is a little slower to start up than the
+one-folder bundle.</p>
+
+<p>Before you attempt to bundle to one file, make sure your app works correctly
+when bundled to one folder. It is is much easier to diagnose problems in
+one-folder mode.</p>
+
+<h2 id="how-on-file-program-works">how on file program works?</h2>
+
+<p>The bootloader is the heart of the one-file bundle also.</p>
+
+<ol>
+  <li>create the temp dir in your system</li>
+  <li>extract the file into the temp dir</li>
+  <li>works like the one folder program</li>
+</ol>
+
+<p>Because the program makes a temporary folder with a unique name, you can run
+multiple copies of the app; they won’t interfere with each other. However,
+running multiple copies is expensive in disk space because nothing is shared.</p>
+
+<h2 id="hide-your-source-code">hide your source code</h2>
+
+<p>if you want to hiden your source code when compiling, just check the tutorial
+<a href="https://pythonhosted.org/PyInstaller/#Hiding the Source Code">here</a>.</p>
+
+<h2 id="usage">usage</h2>
+
+<p>In the most simple case, set the current directory to the location of your
+program myscript.py and execute:</p>
+
+<blockquote>
+  <p>pyinstaller myscript.py</p>
+</blockquote>
+
+<p>PyInstaller analyzes myscript.py and:</p>
+
+<ul>
+  <li>Writes myscript.spec in the same folder as the script.</li>
+  <li>Creates a folder build in the same folder as the script if it does not exist.</li>
+  <li>Writes some log files and working files in the build folder.</li>
+  <li>Creates a folder dist in the same folder as the script if it does not exist.</li>
+  <li>Writes the myscript executable folder in the dist folder.</li>
+</ul>
+
+    </div>
+
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
+
+</div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="recommendation-default">
+                        <div class="table-responsive" id="recommendation">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+    <div class="container">
+
+        <div>
+            <a href="https://github.com/smileboywtu">
+                <span class="icon"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span>
+            </a>
+        </div>
+
+        <div class="text-muted">
+            <small>Designed By Smile Boy.</small>
+        </div>
+
+    </div>
+</footer>
+
+    </div>
+</body>
+
+
+</html>
