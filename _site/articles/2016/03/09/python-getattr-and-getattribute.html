@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Coder Life</title>
-    <meta name="description" content="">
+    <title>python getattr and getatribute</title>
+    <meta name="description" content="A key difference between __getattr__ and __getattribute__ is that__getattr__ is only invoked if the attribute wasn’t found the usual ways.It’s good for imple...">
 
     <!-- style -->
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600">
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href=" /css/customer/customer.css ">
     <!-- bootstrap3 -->
     <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
-    <link rel="canonical" href="http://smileboywtu.github.io/">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/03/09/python-getattr-and-getattribute.html">
 
     <!-- isso comment system -->
     <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
@@ -34,6 +34,12 @@
             },"html");
     </script>
 
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-python getattr and getatribute-title").addClass("active");
+        });
+    </script>
     
 
 </head>
@@ -81,71 +87,69 @@
         <div class="container-fluid">
             <div class="row default">
                 <div class="col-lg-6">
-                    <div>
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-    <div class="page-header">
-        <h1><small>Article</small></h1>
+    <h2 class="post-title">python getattr and getatribute</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-03-09T08:48:00+08:00" itemprop="datePublished">
+                Mar 9, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <p>A key difference between __getattr__ and __getattribute__ is that
+__getattr__ is only invoked if the attribute wasn’t found the usual ways.
+It’s good for implementing a fallback for missing attributes, and is probably
+the one of two you want.</p>
+
+<p>__getattribute__ is invoked before looking at the actual attributes on the
+object, and so can be tricky to implement correctly. You can end up in infinite
+recursions very easily.</p>
+
+<p>New-style classes derive from object, old-style classes are those in Python 2.x
+with no explicit base class. But the distinction between old-style and new-style
+classes is not the important one when choosing between __getattr__ and
+__getattribute__.</p>
+
+<h2 id="usage">usage</h2>
+
+<p>this demo fron other people:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">UrlGenerator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root_url</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">root_url</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">==</span> <span class="s">'get'</span> <span class="ow">or</span> <span class="n">item</span> <span class="o">==</span> <span class="s">'post'</span><span class="p">:</span>
+            <span class="k">print</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span>
+        <span class="k">return</span> <span class="n">UrlGenerator</span><span class="p">(</span><span class="s">'{}/{}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">item</span><span class="p">))</span></code></pre></figure>
+
+<p>test the class:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">url_gen</span> <span class="o">=</span> <span class="n">UrlGenerator</span><span class="p">(</span><span class="s">'http://xxxx'</span><span class="p">)</span>
+<span class="n">url_gen</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">show</span><span class="o">.</span><span class="n">get</span></code></pre></figure>
+
+<p>will print http://xxxx/users/show and the address of the object.</p>
+
+<h2 id="reference">reference</h2>
+
+<ul>
+  <li><a href="http://stackoverflow.com/questions/3278077/difference-between-getattr-vs-getattribute">stackoverflow</a></li>
+  <li><a href="http://stackoverflow.com/questions/4295678/understanding-the-difference-between-getattr-and-getattribute">stackoverflow</a></li>
+</ul>
+
     </div>
 
-    <ul class="posts">
-        
-        <li><span>09 Mar 2016</span> &raquo; <a href="/articles/2016/03/09/python-getattr-and-getattribute.html">python getattr and getatribute</a></li>
-        
-        <li><span>08 Mar 2016</span> &raquo; <a href="/articles/2016/03/08/use-git-advanced-way.html">use the git advanced way</a></li>
-        
-        <li><span>08 Mar 2016</span> &raquo; <a href="/articles/2016/03/08/use-ssh-in-your-work.html">use ssh in your work</a></li>
-        
-        <li><span>07 Mar 2016</span> &raquo; <a href="/articles/2016/03/07/range-and-xrange-in-python.html">range and xrange in python</a></li>
-        
-        <li><span>06 Mar 2016</span> &raquo; <a href="/articles/2016/03/06/understand-http-method.html">understanding http method</a></li>
-        
-        <li><span>04 Mar 2016</span> &raquo; <a href="/articles/2016/03/04/how-to-merge-two-pdf.html">merge serval pdfs and add watermark</a></li>
-        
-        <li><span>26 Feb 2016</span> &raquo; <a href="/articles/2016/02/26/number-limit-python.html">python and c integer variable</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/use-bit-operator.html">use bit operator</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/give-it-five-minutes.html">give it five minutes</a></li>
-        
-        <li><span>25 Feb 2016</span> &raquo; <a href="/articles/2016/02/25/everyone-needs-to-protect-his-dream.html">everyone needs to protect his dream</a></li>
-        
-        <li><span>23 Feb 2016</span> &raquo; <a href="/articles/2016/02/23/learn-css-in-brief.html">learn css in brief</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/understand-http.html">understand http workflow</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/python-with-statement-understanding.html">python with statement</a></li>
-        
-        <li><span>20 Feb 2016</span> &raquo; <a href="/articles/2016/02/20/let's-build-a-web-server-step-by-step.html">let's build a web server step by step. part 1.</a></li>
-        
-        <li><span>19 Feb 2016</span> &raquo; <a href="/articles/2016/02/19/netease-music-api.html">netease music api usage</a></li>
-        
-        <li><span>18 Feb 2016</span> &raquo; <a href="/articles/2016/02/18/sqlite3-concurrency-detail.html">sqlite3 concurrency detail</a></li>
-        
-        <li><span>18 Feb 2016</span> &raquo; <a href="/articles/2016/02/18/using-cors-python.html">using cors in python flask</a></li>
-        
-        <li><span>13 Feb 2016</span> &raquo; <a href="/articles/2016/02/13/metaclass-in-python.html">metaclass in python</a></li>
-        
-        <li><span>09 Feb 2016</span> &raquo; <a href="/articles/2016/02/09/flask-understanding.html">flask route understanding</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/decorator-in-python.html">python decorator</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/functions-are-first-class-objects-ib-python.html">functions are first class objects in python</a></li>
-        
-        <li><span>08 Feb 2016</span> &raquo; <a href="/articles/2016/02/08/happy-new-year.html">happy new year</a></li>
-        
-        <li><span>05 Feb 2016</span> &raquo; <a href="/articles/2016/02/05/sphinx-work-with-rst2pdf.html">sphinx work with rst2pdf</a></li>
-        
-        <li><span>01 Feb 2016</span> &raquo; <a href="/articles/2016/02/01/nginx-work-module.html">nginx work module</a></li>
-        
-        <li><span>27 Jan 2016</span> &raquo; <a href="/articles/2016/01/27/nodejs-starter.html">Node.js, Require and Exports</a></li>
-        
-        <li><span>26 Jan 2016</span> &raquo; <a href="/articles/2016/01/26/install-isso-from-source.html">install isso from source</a></li>
-        
-        <li><span>23 Jan 2016</span> &raquo; <a href="/articles/2016/01/23/scrape-web-using-scrapy-and-mongodb.html">scrape web using scrapy and mongodb</a></li>
-        
-        <li><span>22 Jan 2016</span> &raquo; <a href="/articles/2016/01/22/welcome.html">Welcome</a></li>
-        
-    </ul>
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
 
 </div>
 
