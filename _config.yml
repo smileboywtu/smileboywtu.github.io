@@ -7,5 +7,7 @@ github_username:  smileboywtu
 # Build settings
 markdown: kramdown
 
+highlight: pygments
+
 # comments
 comments: true
