@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>use argparser in python</title>
+    <meta name="description" content="programs always need arguments to make itself smarter to users. a program mayneed the user’s choice when run foreground or background.">
+
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+    <link rel="stylesheet" href=" /css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href=" /css/customer/syntax.css ">
+    <link rel="stylesheet" href=" /css/customer/customer.css ">
+    <!-- bootstrap3 -->
+    <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
+    <link rel="canonical" href="http://smileboywtu.github.io/articles/2016/03/14/use-argparser-python.html">
+
+    <!-- isso comment system -->
+    <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
+
+    <!-- bootstrap 3 -->
+    <script src=" /css/bootstrap3/js/jquery-1.12.0.min.js "></script>
+    <script src=" /css/bootstrap3/js/bootstrap.min.js "></script>
+
+    <!-- owner special recommendation -->
+    <script>
+        $.get(
+            "http://121.42.178.129/recommendation/music",
+            function(data){
+                $('#recommendation').append(data);
+            },"html");
+    </script>
+
+    
+    <script>
+        $(document).ready(function() {
+            $("#id-page-use argparser in python-title").addClass("active");
+        });
+    </script>
+    
+
+</head>
+
+
+<body>
+    <div>
+        <header>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Coder Life</a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="id-page-Projects-title">
+                        <a href=" /Projects/ ">Projects</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="id-page-About-title"><a href=" /About/ ">About</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="https://github.com/smileboywtu"><i class="fa fa-github"></i> GitHub</a></li>
+                            <li><a href="http://smileboywtu.deercv.com"><i class="fa fa-user"></i> Deer CV</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+        <div class="container-fluid">
+            <div class="row default">
+                <div class="col-lg-6">
+                    <div class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <h2 class="post-title">use argparser in python</h2>
+
+    <p class="post-meta">
+        <small>
+            <time datetime="2016-03-14T16:22:00+08:00" itemprop="datePublished">
+                Mar 14, 2016
+            </time>
+        </small>
+    <p>
+
+    <div class="post-content">
+        <p>programs always need arguments to make itself smarter to users. a program may
+need the user’s choice when run foreground or background.</p>
+
+<p>so it’s useful to add the arguments to your program.</p>
+
+<p>when you using python language, you can find the doc in the official site, but
+trust me that you may get confused even you follow the document.</p>
+
+<p>here is the flow of my study and tricks.</p>
+
+<p>let’s start with a simple example:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-q"</span><span class="p">,</span> <span class="s">"--quit"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"start the assistant without gui"</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="s">'store_true'</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">quit</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'quit the program.'</span></code></pre></figure>
+
+<p>when you start your program you may get this:</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">➜  argparser python main.py -q
+quit the program.
+
+➜  argparser python main.py -h
+usage: main.py <span class="o">[</span>-h] <span class="o">[</span>-q]
+
+optional arguments:
+  -h, --help  show this <span class="nb">help </span>message and <span class="nb">exit</span>
+  -q, --quit  start the assistant without gui</code></pre></figure>
+
+<p>very easy, or right, but it’s not always come to your thoughts when using python.</p>
+
+<p>here we start to use sub module. supposing that we have a program can take:</p>
+
+<ul>
+  <li>update</li>
+  <li>download</li>
+  <li>transfer</li>
+  <li>delete</li>
+</ul>
+
+<p>here we need arguments in the subcommands, we may define our argument like this:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-q"</span><span class="p">,</span> <span class="s">"--quit"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"start the assistant without gui"</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="s">'store_true'</span><span class="p">)</span>
+
+<span class="n">sub_parsers</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s">"sub parser for test."</span><span class="p">)</span>
+
+<span class="n">parser_a</span> <span class="o">=</span> <span class="n">sub_parsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'a help'</span><span class="p">)</span>
+<span class="n">parser_a</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'bar'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'bar help'</span><span class="p">)</span>
+
+<span class="n">parser_b</span> <span class="o">=</span> <span class="n">sub_parsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s">'b'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'b help'</span><span class="p">)</span>
+<span class="n">parser_b</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--baz'</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="s">'XYZ'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'baz help'</span><span class="p">)</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span></code></pre></figure>
+
+<p>there seem no problem here, but when you start run the script, you may find it
+not work as you think.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">➜  argparser python main.py -h
+usage: main.py <span class="o">[</span>-h] <span class="o">[</span>-q] <span class="o">{</span>a,b<span class="o">}</span> ...
+
+positional arguments:
+  <span class="o">{</span>a,b<span class="o">}</span>       sub parser <span class="k">for </span>test.
+    a         a <span class="nb">help
+    </span>b         b <span class="nb">help
+
+</span>optional arguments:
+  -h, --help  show this <span class="nb">help </span>message and <span class="nb">exit</span>
+  -q, --quit  start the assistant without gui
+
+➜  argparser python main.py -q
+usage: main.py <span class="o">[</span>-h] <span class="o">[</span>-q] <span class="o">{</span>a,b<span class="o">}</span> ...
+main.py: error: too few arguments
+
+➜  argparser python main.py -q a 1
+quit the program.</code></pre></figure>
+
+<p>why we make the -q the first level argument, it’s equal to a and b, but when we
+get -q why does the argparse tell us too few arguments?</p>
+
+<p>so here i just tell you about that:</p>
+
+<ul>
+  <li>if you want your first level flag work with your subcommand, you just add all
+the argurments and parse them at final step.</li>
+  <li>if you want to make your first level arguments work at the same weight with
+your subcommands, you need to get them out first and then.</li>
+</ul>
+
+<p>let’s talk with second situation:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-q"</span><span class="p">,</span> <span class="s">"--quit"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"start the assistant without gui"</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="s">'store_true'</span><span class="p">)</span>
+
+<span class="c"># do the check here</span>
+<span class="n">parsed</span><span class="p">,</span> <span class="n">remain</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_known_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">parsed</span><span class="o">.</span><span class="n">quit</span><span class="p">:</span>
+  <span class="k">print</span> <span class="s">"quit the program"</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">remain</span><span class="p">):</span>
+
+    <span class="n">sub_parsers</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">add_subparsers</span><span class="p">(</span><span class="n">help</span><span class="o">=</span><span class="s">"sub parser for test."</span><span class="p">)</span>
+
+    <span class="n">parser_a</span> <span class="o">=</span> <span class="n">sub_parsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s">'a'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'a help'</span><span class="p">)</span>
+    <span class="n">parser_a</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'bar'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'bar help'</span><span class="p">)</span>
+
+    <span class="n">parser_b</span> <span class="o">=</span> <span class="n">sub_parsers</span><span class="o">.</span><span class="n">add_parser</span><span class="p">(</span><span class="s">'b'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'b help'</span><span class="p">)</span>
+    <span class="n">parser_b</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--baz'</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="s">'XYZ'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'baz help'</span><span class="p">)</span>
+
+    <span class="n">parsed</span><span class="p">,</span> <span class="n">remain</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_known_args</span><span class="p">(</span><span class="n">remain</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">parsed</span><span class="o">.</span><span class="n">a</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">'get value: '</span><span class="p">,</span> <span class="n">a</span></code></pre></figure>
+
+<p>that’s all I know about if you want to see more, you need to refer the docs.</p>
+
+<h1 id="reference">reference</h1>
+
+<ul>
+  <li><a href="https://docs.python.org/2.7/library/argparse.html">python doc</a></li>
+  <li><a href="http://stackoverflow.com/questions/24207750/python-2-x-optionnal-subparsers-error-too-few-arguments">stackoverflow</a></li>
+</ul>
+
+    </div>
+
+    
+    <hr>
+    <div class="post-comments">
+        <section id="isso-thread"></section>
+    </div>
+
+    
+
+</div>
+
+                </div>
+                <div class="col-lg-6">
+                    <div class="recommendation-default">
+                        <div class="table-responsive" id="recommendation">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+    <div class="container">
+
+        <div>
+            <a href="https://github.com/smileboywtu">
+                <span class="icon"><svg viewBox="0 0 16 16"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span>
+            </a>
+        </div>
+
+        <div class="text-muted">
+            <small>Designed By Smile Boy.</small>
+        </div>
+
+    </div>
+</footer>
+
+    </div>
+</body>
+
+
+</html>
