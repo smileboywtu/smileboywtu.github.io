@@ -144,6 +144,10 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\
 
 {% endhighlight %}
 
+on mac you can read the **/Applications** for all the extentions inside .app
+with it's **.plist** file.
+
+
 
 
 ## reference
