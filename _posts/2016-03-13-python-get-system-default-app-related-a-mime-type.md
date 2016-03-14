@@ -136,6 +136,16 @@ Here is my way: I just use the default program to open the file and give the
 user a list of current installed app on the platform or let the user choose
 the path of the program.
 
+on windows, I just find the way to get the open with list:
+
+{% highlight shell %}
+
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\
+
+{% endhighlight %}
+
+
+
 ## reference
 
 1. [subprocess](https://docs.python.org/2/library/subprocess.html)
@@ -148,3 +158,4 @@ the path of the program.
 8. [list installed app](http://www.howtogeek.com/165293/how-to-get-a-list-of-software-installed-on-your-pc-with-a-single-command/)
 9. [window cmd list installed app](http://helpdeskgeek.com/how-to/generate-a-list-of-installed-programs-in-windows/)
 10. [windows how to](http://superuser.com/questions/447277/list-all-installed-software-on-pc)
+11. [open with list](http://stackoverflow.com/questions/3924753/where-does-windows-store-its-open-with-settings)
