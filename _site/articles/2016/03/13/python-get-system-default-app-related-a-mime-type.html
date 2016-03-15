@@ -226,6 +226,17 @@ the path of the program.</p>
 <p>on mac you can read the <strong>/Applications</strong> for all the extentions inside .app
 with it’s <strong>.plist</strong> file.</p>
 
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">plistlib</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">plistlib</span><span class="o">.</span><span class="n">readPlist</span><span class="p">(</span><span class="s">'file.plist'</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s">'CFBundleDocumentTypes'</span><span class="p">]:</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="s">'CFBundleTypeExtensions'</span><span class="p">])</span></code></pre></figure>
+
+<p>now you can find all the application inside the /Applications and then get the
+supported file extentions of them, and keep a copy of them inside the database.</p>
+
 <h2 id="reference">reference</h2>
 
 <ol>
@@ -240,6 +251,7 @@ with it’s <strong>.plist</strong> file.</p>
   <li><a href="http://helpdeskgeek.com/how-to/generate-a-list-of-installed-programs-in-windows/">window cmd list installed app</a></li>
   <li><a href="http://superuser.com/questions/447277/list-all-installed-software-on-pc">windows how to</a></li>
   <li><a href="http://stackoverflow.com/questions/3924753/where-does-windows-store-its-open-with-settings">open with list</a></li>
+  <li><a href="http://mac-how-to.wonderhowto.com/how-to/remove-duplicates-customize-open-with-menu-mac-os-x-0157100/">mac application extentions</a></li>
 </ol>
 
     </div>

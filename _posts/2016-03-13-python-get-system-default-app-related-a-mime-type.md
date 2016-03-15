@@ -147,7 +147,20 @@ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\
 on mac you can read the **/Applications** for all the extentions inside .app
 with it's **.plist** file.
 
+{% highlight python %}
 
+import plistlib
+from pprint import pprint
+
+r = plistlib.readPlist('file.plist')
+
+for l in r['CFBundleDocumentTypes']:
+    pprint(l['CFBundleTypeExtensions'])
+
+{% endhighlight %}
+
+now you can find all the application inside the /Applications and then get the
+supported file extentions of them, and keep a copy of them inside the database.
 
 
 ## reference
@@ -163,3 +176,4 @@ with it's **.plist** file.
 9. [window cmd list installed app](http://helpdeskgeek.com/how-to/generate-a-list-of-installed-programs-in-windows/)
 10. [windows how to](http://superuser.com/questions/447277/list-all-installed-software-on-pc)
 11. [open with list](http://stackoverflow.com/questions/3924753/where-does-windows-store-its-open-with-settings)
+12. [mac application extentions](http://mac-how-to.wonderhowto.com/how-to/remove-duplicates-customize-open-with-menu-mac-os-x-0157100/)
