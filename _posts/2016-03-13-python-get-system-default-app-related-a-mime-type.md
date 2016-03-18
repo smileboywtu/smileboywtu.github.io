@@ -136,6 +136,8 @@ Here is my way: I just use the default program to open the file and give the
 user a list of current installed app on the platform or let the user choose
 the path of the program.
 
+> The information that is stored here makes sure that the correct program opens when you open a file by using Windows Explorer. This key is sometimes abbreviated as "HKCR." Starting with Windows 2000, this information is stored under both the HKEY_LOCAL_MACHINE and HKEY_CURRENT_USER keys. The HKEY_LOCAL_MACHINE\Software\Classes key contains default settings that can apply to all users on the local computer. The HKEY_CURRENT_USER\Software\Classes key contains settings that override the default settings and apply only to the interactive user. The HKEY_CLASSES_ROOT key provides a view of the registry that merges the information from these two sources.
+
 on windows, I just find the way to get the open with list:
 
 {% highlight shell %}

@@ -219,6 +219,10 @@ get a good idea, you can leave me a message.</p>
 user a list of current installed app on the platform or let the user choose
 the path of the program.</p>
 
+<blockquote>
+  <p>The information that is stored here makes sure that the correct program opens when you open a file by using Windows Explorer. This key is sometimes abbreviated as “HKCR.” Starting with Windows 2000, this information is stored under both the HKEY_LOCAL_MACHINE and HKEY_CURRENT_USER keys. The HKEY_LOCAL_MACHINE\Software\Classes key contains default settings that can apply to all users on the local computer. The HKEY_CURRENT_USER\Software\Classes key contains settings that override the default settings and apply only to the interactive user. The HKEY_CLASSES_ROOT key provides a view of the registry that merges the information from these two sources.</p>
+</blockquote>
+
 <p>on windows, I just find the way to get the open with list:</p>
 
 <figure class="highlight"><pre><code class="language-shell" data-lang="shell">HKEY_CURRENT_USER<span class="se">\S</span>oftware<span class="se">\M</span>icrosoft<span class="se">\W</span>indows<span class="se">\C</span>urrentVersion<span class="se">\E</span>xplorer<span class="se">\F</span>ileExts<span class="se">\</span></code></pre></figure>
