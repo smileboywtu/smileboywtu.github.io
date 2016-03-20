@@ -142,9 +142,13 @@ on windows, I just find the way to get the open with list:
 
 {% highlight shell %}
 
-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\
+HKEY_CLASSES_ROOT\*
 
 {% endhighlight %}
+
+when you want to find all the program that can open **.mp3** file, you just find the
+registry under this key, this key merges *HKEY_CURRENT_USER*, *HKEY_LOCAL_MACHINE*
+so all the program that can open the program will all show here.
 
 on mac you can read the **/Applications** for all the extentions inside .app
 with it's **.plist** file.
@@ -164,6 +168,12 @@ for l in r['CFBundleDocumentTypes']:
 now you can find all the application inside the /Applications and then get the
 supported file extentions of them, and keep a copy of them inside the database.
 
+on linux, you will find the ~/.local/share/applications and /usr/share/applications,
+these two folder contains all the file type associations, just read the .list file inside
+them, you can get all the program that can open the program.
+
+Now I just try to write a library to get the open with programs cross-platform.
+if you want to help, you can find the repository [here](https://github.com/smileboywtu/mimeopen).
 
 ## reference
 
