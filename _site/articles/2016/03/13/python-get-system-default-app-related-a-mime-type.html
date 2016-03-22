@@ -231,6 +231,14 @@ the path of the program.</p>
 registry under this key, this key merges <em>HKEY_CURRENT_USER</em>, <em>HKEY_LOCAL_MACHINE</em>
 so all the program that can open the program will all show here.</p>
 
+<p>for example, if you want to find all the programs that can open the .mp3 file,
+you just need to search all the class under HKEY_CLASSES_ROOT except .mp3 itself.
+the others will be the programs which can open mp3 file. after you get the program
+id, you can get the execute command. with that you can set the default open program
+under <strong>HKEY_CURRENT_USER/Software/Microsoft/Windows/CurrentVersion/Explorer/FileExt
+/.mp3/UserChoice/Progid</strong> or you can set it the default edit program under
+<strong>/HKEY_CURRENT_USER/Software/Classes/.mp3/shell/edit/command</strong></p>
+
 <p>on mac you can read the <strong>/Applications</strong> for all the extentions inside .app
 with it’s <strong>.plist</strong> file.</p>
 
