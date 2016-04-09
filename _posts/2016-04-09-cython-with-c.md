@@ -65,3 +65,63 @@ pyximport.install(pyimport = True)
 
 if you want to use the C function in your .pyx file, you need to use the setuptools
 to compile the code into .so and then import the c function.
+
+another good way is used the c source code and compile the source into the python
+module.
+
+c function source file:
+
+{% highlight c %}
+
+#include <stdio.h>
+#include "easy.h"
+
+void greeting(){
+
+  printf("this is the first c python module.\n");
+}
+
+{% endhighlight %}
+
+c header function file:
+
+{% highlight c %}
+
+#ifndef _EASY_H__
+#define _EASY_H__
+
+void greeting();
+
+#endif
+
+{% endhighlight %}
+
+
+cython module for wrapping the c source file .pyx:
+
+{% highlight python %}
+
+cdef extern from "easy.h":
+  cpdef void greeting()
+
+{% endhighlight %}
+
+
+compile the c source file to .so file then you can import this module from the
+python.
+
++ compile the .pyx into c code
++ compile all .c file into .so file
+
+notice: this work on mac ox, you can compile use the same way but with different
+compiler and flags.
+
+{% highlight shell %}
+
+cython -o easy_.c easy.pyx
+
+cc -shared `python2-config --includes --libs --cflags --ldflags` -o easy.so easy.c easy_.c
+
+{% endhighlight %}
+
+after that you will find the .so file inside the current directory.

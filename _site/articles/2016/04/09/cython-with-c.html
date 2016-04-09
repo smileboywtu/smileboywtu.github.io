@@ -151,6 +151,50 @@ modules instead. The .py import mechanism is installed like this:</p>
 <p>if you want to use the C function in your .pyx file, you need to use the setuptools
 to compile the code into .so and then import the c function.</p>
 
+<p>another good way is used the c source code and compile the source into the python
+module.</p>
+
+<p>c function source file:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;
+#include "easy.h"
+</span>
+<span class="kt">void</span> <span class="n">greeting</span><span class="p">(){</span>
+
+  <span class="n">printf</span><span class="p">(</span><span class="s">"this is the first c python module.</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>c header function file:</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#ifndef _EASY_H__
+#define _EASY_H__
+</span>
+<span class="kt">void</span> <span class="n">greeting</span><span class="p">();</span>
+
+<span class="cp">#endif</span></code></pre></figure>
+
+<p>cython module for wrapping the c source file .pyx:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">cdef</span> <span class="n">extern</span> <span class="kn">from</span> <span class="err">"</span><span class="nn">easy.h</span><span class="err">":
+</span>  <span class="nn">cpdef</span> <span class="nn">void</span> <span class="nn">greeting</span><span class="err">()</span></code></pre></figure>
+
+<p>compile the c source file to .so file then you can import this module from the
+python.</p>
+
+<ul>
+  <li>compile the .pyx into c code</li>
+  <li>compile all .c file into .so file</li>
+</ul>
+
+<p>notice: this work on mac ox, you can compile use the same way but with different
+compiler and flags.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">cython -o easy_.c easy.pyx
+
+cc -shared <span class="sb">`</span>python2-config --includes --libs --cflags --ldflags<span class="sb">`</span> -o easy.so easy.c easy_.c</code></pre></figure>
+
+<p>after that you will find the .so file inside the current directory.</p>
+
     </div>
 
     
