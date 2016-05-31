@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Projects</title>
+    <title>Artworks</title>
     <meta name="description" content="">
 
     <!-- style -->
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href=" /css/customer/customer.css ">
     <!-- bootstrap3 -->
     <link rel="stylesheet" href=" /css/bootstrap3/css/bootstrap.min.css ">
-    <link rel="canonical" href="http://smileboywtu.github.io/Projects/">
+    <link rel="canonical" href="http://smileboywtu.github.io/Artworks/">
 
     <!-- isso comment system -->
     <script data-isso="//121.42.178.129" data-isso-lang="en" data-isso-css="true" src="//121.42.178.129/js/embed.min.js"></script>
@@ -40,7 +40,7 @@
     
     <script>
         $(document).ready(function() {
-            $("#id-page-Projects-title").addClass("active");
+            $("#id-page-Artworks-title").addClass("active");
         });
     </script>
     
@@ -96,59 +96,49 @@
                     <article class="page">
 
     <header class="page-header">
-        <h2 class="page-title"> Projects <h2>
+        <h2 class="page-title"> Artworks <h2>
     </header>
 
     <div class="page-content">
-        <h3><a href="https://github.com/smileboywtu/MusicRecommend">Music Recommend </a></h3>
-<p class="well">
-recommend music using the netwase web api. user can login and get recommend music every day.
-</p>
+        <p> some fantastic work done by me for fun, some you can use, but need to pay for me. </p>
 
 <hr>
 
-<h3><a href="https://github.com/smileboywtu/LubyTransformCode">Luby Transform Code</a><h3>
-<p class="well">
-java and python library for the luby transform code, this lib can work with android and pc.this lib is developed under python3, java6, java8.
-</p>
+<div class="list-group">
+  <button type="button" class="list-group-item active" 
+  		  data-toggle="tooltip" data-placement="down" title="My Own Resume Created by Deer CV Online" file="/downloads/artworks/python.pdf">
+  		  Resume</button>
+  <button type="button" class="list-group-item" 
+  		  data-toggle="tooltip" data-placement="down" title="project for my graduating" 
+  		  file="/downloads/artworks/sef.pdf">
+  		  Symmetry Encryption based on Fountain Code</button>
+</div>
 
-<hr>
+<script type='text/javascript'>
 
-<h3><a href="https://github.com/smileboywtu/worker-timer">Work Timer</a></h3>
-<p class="well">
-help the programer or worker schedule the ordinary task in time limitation, notify worker to rest after a period of time.
-</p>
+	// format a string
+	String.prototype.format = function () {
+  		var args = arguments;
+  		return this.replace(/\{(\d+)\}/g, function (m, n) { return args[n]; });
+	};
+	// define the formatter
+	var reader = "<embed src='{0}' width='437' height='380' type='application/pdf'>";
 
-<hr>
+	$( document ).ready(function() {
+		src = $( ".list-group-item.active" ).attr('file');
+        $( "#recommendation" ).append(reader.format(src));
+    });
 
-<h3><a href="https://github.com/smileboywtu/EmbeddedMonitor">Embedded Monitor</a></h3>
-<p class="well">
-program developed for IOT(Intenet Of Things) with zigbee network powered laboratory.
-</p>
+	// handle button group event
+    $( ".list-group-item" ).on('click', function() {
+    	$( '.list-group-item.active' ).removeClass('active');
+    	$( this ).addClass('active');
+    	// add new embed
+    	$( "#recommendation embed" ).remove();
+    	$( "#recommendation" ).append(reader.format($( this ).attr('file')));
+    });
 
-<hr>
-
-<h3><a href="https://github.com/smileboywtu/AndroidSerialHelper">Android Serial Helper</a></h3>
-<p class="well">
-android program for transfer camera image through the PL2303 HXD device.
-</p>
-
-<hr>
-
-<h3><a href="https://github.com/smileboywtu/CS-FileTransfer">C/S File Transfer</a></h3>
-<p class="well">
-transfer and store the file inside the server mongo db database. with multiple thread, multiple user.
-</p>
-
-<hr>
-
-<h3><a href="https://github.com/smileboywtu/zigbee-lcd-stack">Zigbee LCD Stack</a></h3>
-<p class="well">
-zigbee stack for zigbee network with lcd, camera, adxl345 device.
-</p>
-
-<hr>
-
+</script>
     </div>
 
 </article>

@@ -1,0 +1,45 @@
+---
+layout: page
+title: Artworks 
+permalink: /Artworks/
+---
+
+<p> some fantastic work done by me for fun, some you can use, but need to pay for me. </p>
+
+<hr>
+
+<div class="list-group">
+  <button type="button" class="list-group-item active" 
+  		  data-toggle="tooltip" data-placement="down" title="My Own Resume Created by Deer CV Online" file="{{ '/downloads/artworks/python.pdf' | prepend: site.baseurl }}">
+  		  Resume</button>
+  <button type="button" class="list-group-item" 
+  		  data-toggle="tooltip" data-placement="down" title="project for my graduating" 
+  		  file="{{ '/downloads/artworks/sef.pdf' | prepend: site.baseurl }}">
+  		  Symmetry Encryption based on Fountain Code</button>
+</div>
+
+<script type='text/javascript'>
+
+	// format a string
+	String.prototype.format = function () {
+  		var args = arguments;
+  		return this.replace(/\{(\d+)\}/g, function (m, n) { return args[n]; });
+	};
+	// define the formatter
+	var reader = "<embed src='{0}' width='437' height='380' type='application/pdf'>";
+
+	$( document ).ready(function() {
+		src = $( ".list-group-item.active" ).attr('file');
+        $( "#recommendation" ).append(reader.format(src));
+    });
+
+	// handle button group event
+    $( ".list-group-item" ).on('click', function() {
+    	$( '.list-group-item.active' ).removeClass('active');
+    	$( this ).addClass('active');
+    	// add new embed
+    	$( "#recommendation embed" ).remove();
+    	$( "#recommendation" ).append(reader.format($( this ).attr('file')));
+    });
+
+</script>

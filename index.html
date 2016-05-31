@@ -15,3 +15,11 @@ layout: default
     </ul>
 
 </div>
+
+<script>
+    $.get(
+        "http://121.42.178.129/recommendation/music",
+        function(data){
+            $('#recommendation').append(data);
+        },"html");
+</script>
