@@ -122,7 +122,7 @@
   		return this.replace(/\{(\d+)\}/g, function (m, n) { return args[n]; });
 	};
 	// define the formatter
-	var reader = "<embed src='{0}' width='437' height='380' type='application/pdf'>";
+	var reader = "<embed style='position: fixed;' src='{0}' width='437' height='380' type='application/pdf'>";
 
 	$( document ).ready(function() {
 		src = $( ".list-group-item.active" ).attr('file');
