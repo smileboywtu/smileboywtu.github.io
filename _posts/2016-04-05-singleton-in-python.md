@@ -173,3 +173,4 @@ the class will have an enclosing scope of instance.
 
 [python3 pattern](http://python-3-patterns-idioms-test.readthedocs.org/en/latest/Singleton.html)
 [python Closures](http://www.programiz.com/python-programming/closure)
+[Decorators in Python](https://www.scaler.com/topics/python/python-decorators/)
